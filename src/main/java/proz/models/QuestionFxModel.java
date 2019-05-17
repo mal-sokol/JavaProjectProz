@@ -1,14 +1,11 @@
 package proz.models;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class QuestionFxModel
 {
     private IntegerProperty questionId = new SimpleIntegerProperty();
-    private IntegerProperty testId = new SimpleIntegerProperty();
+    private ObjectProperty<TestFxModel> testId = new SimpleObjectProperty<>();
     private StringProperty question = new SimpleStringProperty();
 
     public int getQuestionId()
@@ -26,21 +23,6 @@ public class QuestionFxModel
         this.questionId.set(questionId);
     }
 
-    public int getTestId()
-    {
-        return testId.get();
-    }
-
-    public IntegerProperty testIdProperty()
-    {
-        return testId;
-    }
-
-    public void setTestId(int testId)
-    {
-        this.testId.set(testId);
-    }
-
     public String getQuestion()
     {
         return question.get();
@@ -55,4 +37,11 @@ public class QuestionFxModel
     {
         this.question.set(question);
     }
+
+    public TestFxModel getTestId() { return testId.get(); }
+
+    public ObjectProperty<TestFxModel> testIdProperty() { return testId; }
+
+    public void setTestId(TestFxModel testId) { this.testId.set(testId); }
+
 }
