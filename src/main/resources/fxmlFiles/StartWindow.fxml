@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="startPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="340.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.StartWindowController">
+    <children>
+        <Button fx:id="exitButton" layoutX="157.0" layoutY="289.0" mnemonicParsing="false" onAction="#exitProgram"
+                onMouseEntered="#highlightOnEnterButtonArea" onMouseExited="#stopHighlightingOnExitButtonArea"
+                prefHeight="35.0" prefWidth="60.0" text="Exit" AnchorPane.bottomAnchor="16.0"
+                AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="289.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button fx:id="aboutButton" layoutX="250.0" layoutY="289.0" minHeight="12.0" minWidth="16.0"
+                mnemonicParsing="false" onAction="#showInformationDialog" onMouseEntered="#highlightOnEnterButtonArea"
+                onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="35.0" prefWidth="60.0" text="About"
+                AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0"
+                AnchorPane.topAnchor="289.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="20.0" text="SuperTester3000"
+               underline="true" AnchorPane.bottomAnchor="285.0" AnchorPane.leftAnchor="114.0"
+               AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="20.0">
+            <font>
+                <Font name="System Italic" size="24.0"/>
+            </font>
+        </Label>
+        <Button fx:id="startButton" layoutX="342.0" layoutY="289.0" minHeight="12.0" minWidth="16.0"
+                mnemonicParsing="false" onMouseClicked="#goToLoginPanel" onMouseEntered="#highlightOnEnterButtonArea"
+                onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="35.0" prefWidth="60.0" text="Run"
+                AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="158.0"
+                AnchorPane.topAnchor="289.0">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Label layoutX="180.0" layoutY="55.0" text="Modern Simple Test System!" AnchorPane.bottomAnchor="260.0"
+               AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="179.0" AnchorPane.topAnchor="55.0">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Label>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="206.0" layoutY="95.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="205.0"
+                   AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="95.0">
+            <image>
+                <Image url="@../images/testSystem.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="120.0" fitWidth="114.0" layoutX="57.0" layoutY="113.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="57.0"
+                   AnchorPane.rightAnchor="389.0" AnchorPane.topAnchor="113.0">
+            <image>
+                <Image url="@../images/testSystem2.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="129.0" fitWidth="114.0" layoutX="390.0" layoutY="113.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="389.0"
+                   AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="113.0">
+            <image>
+                <Image url="@../images/testSystem2.png"/>
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
