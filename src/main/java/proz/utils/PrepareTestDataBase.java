@@ -30,8 +30,8 @@ public class PrepareTestDataBase
         Test t2 = new Test();
         t1.setName("The greatest");
         t2.setName("Capital cities");
-        t1.setCategoryId(c1);
-        t2.setCategoryId(c1);
+        t1.setCategory(c1);
+        t2.setCategory(c1);
         testDao.createOrUpdate(t1);
         testDao.createOrUpdate(t2);
         Question q1 = new Question();

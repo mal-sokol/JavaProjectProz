@@ -1,18 +1,17 @@
 package proz.utils.converters;
 
 import proz.models.CategoryFxModel;
+import proz.database.models.Category;
 
 public class CategoryConverter
 {
     private CategoryConverter() {}
 
-    public static CategoryFxModel categoryToCategoryFx()
+    public static CategoryFxModel categoryToCategoryFx(Category category)
     {
-
-    }
-
-    public static Category categoryFxToCategory()
-    {
-
+        CategoryFxModel categoryFx = new CategoryFxModel();
+        categoryFx.setCategoryName(category.getName());
+        categoryFx.setCategoryId(category.getCategoryId());
+        return categoryFx;
     }
 }

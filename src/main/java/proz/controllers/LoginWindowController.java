@@ -123,4 +123,16 @@ public class LoginWindowController
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
     }
+
+    @FXML
+    private void selectWhenEnterPressed(KeyEvent keyEvent)
+    {
+        if(keyEvent.getCode().equals(KeyCode.ENTER))
+        {
+            if(teacherCheckBox.isSelected())
+                teacherCheckBox.setSelected(false);
+            else
+                teacherCheckBox.setSelected(true);
+        }
+    }
 }

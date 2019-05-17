@@ -4,31 +4,37 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import proz.database.daos.CategoryDao;
+import proz.database.models.Category;
+import proz.utils.converters.CategoryConverter;
+import proz.utils.exceptions.ApplicationException;
+
+import java.util.List;
 
 public class CategoryDataModel
 {
     private ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
     private ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
 
-    private void populateCategories()
+    private void populateCategories(List<Category> categories)
     {
-//        categories.clear();
-//        categories.forEach(category -> {
-//            CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
-//            categories.add(categoryFx);
-//        });
+        this.categories.clear();
+        categories.forEach(category -> {
+            CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
+            this.categories.add(categoryFx);
+        });
     }
-    public void fetchDataFromDataBase()
+    public void fetchDataFromDataBase() throws ApplicationException
     {
-//        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        List<Category> categories = categoryDao.queryForAll(Category.class); // sciagniecie wszystkich odpowiedzi
-//        populateCategories();// wrzucenie ich do datamodelu
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categories = categoryDao.queryForAll(Category.class);
+        populateCategories(categories);
     }
 
     public void deleteCategoryById()
     {
 //        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        CategoryDao.deleteById(Category.class, category.getValue().getCategoryId())//usuniecie zaznaczonej odpowiedzi
+//        CategoryDao.deleteById(Category.class, category.getValue().getCategory())//usuniecie zaznaczonej odpowiedzi
         // fetchDataFromDataBase();
 //        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
@@ -45,7 +51,7 @@ public class CategoryDataModel
     public void updateCategoryInDataBase()
     {
 //        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        Category updatedCategory = categoryDao.findById(Category.class, getCategory().getCategoryId());
+//        Category updatedCategory = categoryDao.findById(Category.class, getCategory().getCategory());
 //        updatedCategory.setCategory(getCategory().getCategory());
 //        categoryDao.createOrUpdate(updatedCategory);
 //        fetchDataFromDataBase();

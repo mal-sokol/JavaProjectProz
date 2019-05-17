@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import proz.utils.FxmlUtils;
-import proz.utils.PrepareTestDataBase;
 import proz.utils.exceptions.ApplicationException;
 
 public class Main extends Application
@@ -21,7 +20,7 @@ public class Main extends Application
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/testSys.png")));
         primaryStage.show();
 
-        PrepareTestDataBase.insertTestData();
+//        PrepareTestDataBase.insertTestData();
     }
 
     public static void main(String[] args)

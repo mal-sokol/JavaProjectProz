@@ -8,10 +8,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import proz.models.CategoryDataModel;
 import proz.models.CategoryFxModel;
+import proz.models.TestDataModel;
 import proz.models.TestFxModel;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
+import proz.utils.exceptions.ApplicationException;
 
 import java.util.Optional;
 
@@ -26,27 +29,49 @@ public class StudentChoiceWindowController
     @FXML
     private Pane userChoicePanel;
 
+    private CategoryDataModel categoryDataModel = new CategoryDataModel();
+    private TestDataModel testDataModel = new TestDataModel();
+
     private void disableBeginButtonUntilTestChosen()
     {
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
     }
 
-    //TODO: Tu trzeba będzie zrobić zapytanie do bazy o testy ktorych categoryId bedzie odpowiadało zaznaczonej kategorii
-    // zwroconą listę trzeba bedzie załadować do testnameTable
     private void showAvailableTestsOnCategoryPicked()
     {
-//        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
-//                testNameTable.setItems(newModelValue.getListOfTests()));
+        categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            categoryDataModel.setCategory(newValue);
+            if (categoryDataModel.getCategory() != null)
+            {
+                try {
+                    testDataModel.getTestsFromCategory(categoryDataModel.getCategory().getCategoryId());
+                } catch (Exception e) {
+                    DialogsUtils.errorDialog(e.getMessage());
+                }
+                testNameTable.setItems(testDataModel.getTests());
+            }
+        });
     }
 
-    // TODO: tutaj trzeba będzie zrobic zapytanie o wszystkie kategorie i umiescic je w categoryTable
+    private void storeSelectedTest()
+    {
+        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                testDataModel.setTest(newValue));
+    }
+
     @FXML
     private void initialize()
     {
-//        categoryTable.setItems(testData.getCategories());
+        try {
+            categoryDataModel.fetchDataFromDataBase();
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+        categoryTable.setItems(categoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
+        categoryTable.getSelectionModel().selectFirst();
         showAvailableTestsOnCategoryPicked();
-//        categoryTable.getSelectionModel().selectFirst();
+        storeSelectedTest();
     }
 
     @FXML
