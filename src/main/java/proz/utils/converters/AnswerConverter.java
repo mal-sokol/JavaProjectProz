@@ -18,18 +18,17 @@ public class AnswerConverter
         fxModel.setAnswer(answer.getAnswer());
         fxModel.setAnswerId(answer.getAnswerId());
         fxModel.setIsCorrect(answer.isCorrect());
-        fxModel.setQuestionId(answer.getQuestionId().getQuestionId());
+        fxModel.setQuestionId(QuestionConverter.questionToQuestionFx(answer.getQuestionId()));
         return fxModel;
     }
 
-    public static Answer answerFxToAnswer(AnswerFxModel fxModel) throws ApplicationException, SQLException {
+    public static Answer answerFxToAnswer(AnswerFxModel fxModel)
+    {
         Answer answer = new Answer();
-        QuestionDao dao = new QuestionDao();
         answer.setAnswer(fxModel.getAnswer());
         answer.setAnswerId(fxModel.getAnswerId());
         answer.setCorrect(fxModel.isIsCorrect());
-        Question question = dao.getQueryBuilder(Question.class).query().get(fxModel.getQuestionId());
-        answer.setQuestionId(question);
+        answer.setQuestionId(QuestionConverter.questionFxToQuestion(fxModel.getQuestionId()));
         return answer;
     }
 }
