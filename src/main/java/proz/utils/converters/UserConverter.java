@@ -19,6 +19,7 @@ public class UserConverter
     public static User userFxToUser(UserFxModel fxModel)
     {
         User user = new User();
+        user.setUserId(fxModel.getUserId());
         user.setUsername(fxModel.getUsername());
         user.setPassword(fxModel.getPassword());
         user.setTeacher(fxModel.isIsTeacher());
