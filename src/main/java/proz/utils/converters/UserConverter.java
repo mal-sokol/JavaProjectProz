@@ -1,21 +1,28 @@
 package proz.utils.converters;
 
+import proz.database.models.User;
 import proz.models.UserFxModel;
 
 public class UserConverter
 {
     private UserConverter() {}
 
-    public static UserFxModel userToUserFx()
+    public static UserFxModel userToUserFx(User user)
     {
-        //tu ta konwersja
-
+        UserFxModel fxModel = new UserFxModel();
+        fxModel.setUserId(user.getUserId());
+        fxModel.setUsername(user.getUsername());
+        fxModel.setPassword(user.getPassword());
+        fxModel.setIsTeacher(user.getTeacher());
+        return fxModel;
     }
-    public static User userFxToUser()
+    public static User userFxToUser(UserFxModel fxModel)
     {
-        //tu ta konwersja
-
+        User user = new User();
+        user.setUsername(fxModel.getUsername());
+        user.setPassword(fxModel.getPassword());
+        user.setTeacher(fxModel.isIsTeacher());
+        return user;
     }
-
 
 }
