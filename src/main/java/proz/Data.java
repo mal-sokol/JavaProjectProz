@@ -323,8 +323,8 @@ public class Data {
 
 
         Test chT3 = new Test();
-        chT2.setCategoryId(ch);
-        chT2.setName("Elements");
+        chT3.setCategoryId(ch);
+        chT3.setName("Elements");
         testDao.createOrUpdate(chT3);
 
         Question q1ch3 = new Question();
@@ -535,12 +535,12 @@ public class Data {
         resultDao.createOrUpdate(rch15);
 
         Category l = new Category();
-        ch.setName("Literature");
+        l.setName("Literature");
         categoryDao.createOrUpdate(l);
 
         Test lT1 = new Test();
-        chT1.setCategoryId(ch);
-        chT1.setName("Famous authors");
+        lT1.setCategoryId(l);
+        lT1.setName("Famous authors");
         testDao.createOrUpdate(lT1);
 
         Question q1l1 = new Question();
