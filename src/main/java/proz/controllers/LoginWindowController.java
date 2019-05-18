@@ -11,9 +11,13 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import proz.models.UserDataModel;
 import proz.models.UserFxModel;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
+import proz.utils.exceptions.ApplicationException;
+
+import java.sql.SQLException;
 
 public class LoginWindowController
 {
@@ -66,34 +70,31 @@ public class LoginWindowController
     co odzwierciedla zmienna teacherIsLoggingIn, trzeba bedzie dopisać to query do userDao
      */
     @FXML
-    private void login(Event event)
-    {
+    private void login(Event event) {
         boolean teacherIsLoggingIn = teacherCheckBox.isSelected();
         String username = usernameTextField.getText().trim();//Tu jest ten użytkownik
         String password = passwordField.getText();// Tu jest to hasło
-        if(teacherIsLoggingIn)
-        {
-            if(username.equals("Ann") && password.equals("pass"))
-            {
-                FxmlUtils.switchScene("/fxmlFiles/TeacherChoiceWindow.fxml",
-                        (Node) event.getSource(), "/images/teacher.png");
+        UserDataModel userDataModel = new UserDataModel();
+        try {
+            if (teacherIsLoggingIn) {
+                if (userDataModel.loggedAsTeacher(username, password)) {
+                    FxmlUtils.switchScene("/fxmlFiles/TeacherChoiceWindow.fxml",
+                            (Node) event.getSource(), "/images/teacher.png");
+                } else {
+                    DialogsUtils.unsuccessfulLoginDialog();
+                }
+            } else {
+                if (userDataModel.loggedAsStudent(username, password)) {
+                    FxmlUtils.switchScene("/fxmlFiles/StudentChoiceWindow.fxml",
+                            (Node) event.getSource(), "/images/student.png");
+                } else {
+                    DialogsUtils.unsuccessfulLoginDialog();
+                }
             }
-            else
-            {
-                DialogsUtils.unsuccessfulLoginDialog();
-            }
-        }
-        else
-        {
-            if(username.equals("Tommy") && password.equals("pass"))
-            {
-                FxmlUtils.switchScene("/fxmlFiles/StudentChoiceWindow.fxml",
-                        (Node) event.getSource(), "/images/student.png");
-            }
-            else
-            {
-                DialogsUtils.unsuccessfulLoginDialog();
-            }
+        } catch (ApplicationException e){
+            System.out.println(e.getMessage());
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getErrorCode() + " " + sqlEx.getSQLState());
         }
     }
 

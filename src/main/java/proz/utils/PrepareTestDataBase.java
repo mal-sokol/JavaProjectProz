@@ -23,6 +23,12 @@ public class PrepareTestDataBase
         user.setUsername("Ann");
         userDao.createOrUpdate(user);
 
+        User user1 = new User();
+        user1.setTeacher(false);
+        user1.setPassword("pass");
+        user1.setUsername("Tommy");
+        userDao.createOrUpdate(user1);
+
         Category c1 = new Category();
         c1.setName("Geography");
         categoryDao.createOrUpdate(c1);
