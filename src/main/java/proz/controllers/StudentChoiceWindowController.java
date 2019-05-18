@@ -11,11 +11,14 @@ import javafx.scene.layout.Pane;
 import proz.database.models.Category;
 import proz.models.CategoryDataModel;
 import proz.models.CategoryFxModel;
+import proz.models.TestDataModel;
 import proz.models.TestFxModel;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
+import proz.utils.converters.CategoryConverter;
 import proz.utils.exceptions.ApplicationException;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class StudentChoiceWindowController
@@ -30,6 +33,7 @@ public class StudentChoiceWindowController
     private Pane userChoicePanel;
 
     private CategoryDataModel categoryDataModel;
+    private TestDataModel testDataModel;
 
 
     private void disableBeginButtonUntilTestChosen()
@@ -37,12 +41,19 @@ public class StudentChoiceWindowController
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
     }
 
-    //TODO: Tu trzeba będzie zrobić zapytanie do bazy o testy ktorych categoryId bedzie odpowiadało zaznaczonej kategorii
-    // zwroconą listę trzeba bedzie załadować do testnameTable
+    /*PROPOZYCJA WYSWIETLANIA TESTOW*/
     private void showAvailableTestsOnCategoryPicked()
     {
-//        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
-//                testNameTable.setItems(newModelValue.getListOfTests()));
+        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) -> {
+            try {
+                testDataModel.fetchTestsInCategory(CategoryConverter.categoryFxToCategory(newModelValue));
+            } catch (ApplicationException e) {
+                DialogsUtils.errorDialog(e.getMessage());
+            } catch (SQLException e) {
+                DialogsUtils.errorDialog("Database Error: " + e.getSQLState());
+            }
+            testNameTable.setItems(testDataModel.getTests());
+        });
 
     }
 
@@ -51,6 +62,7 @@ public class StudentChoiceWindowController
     private void initialize()
     {
         this.categoryDataModel = new CategoryDataModel();
+        this.testDataModel = new TestDataModel();
         try {
             this.categoryDataModel.fetchDataFromDataBase();
         } catch (ApplicationException e) {
@@ -60,6 +72,12 @@ public class StudentChoiceWindowController
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
         categoryTable.getSelectionModel().selectFirst();
+        bindTableView();
+    }
+
+    private void bindTableView() {
+        this.testNameTable.setItems(this.testDataModel.getTests());
+
     }
 
     @FXML
