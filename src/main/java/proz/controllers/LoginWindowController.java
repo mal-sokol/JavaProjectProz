@@ -92,9 +92,10 @@ public class LoginWindowController
                 }
             }
         } catch (ApplicationException e){
-            System.out.println(e.getMessage());
+            DialogsUtils.errorDialog("Aplication Error"); 
+//            System.out.println(e.getMessage());
         } catch (SQLException sqlEx) {
-            System.out.println(sqlEx.getErrorCode() + " " + sqlEx.getSQLState());
+            DialogsUtils.errorDialog("Database Error: " + sqlEx.getSQLState());
         }
     }
 
