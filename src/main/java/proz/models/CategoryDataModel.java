@@ -4,25 +4,30 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import proz.database.daos.CategoryDao;
+import proz.database.models.Category;
+import proz.utils.converters.CategoryConverter;
+import proz.utils.exceptions.ApplicationException;
+
+import java.util.List;
 
 public class CategoryDataModel
 {
     private ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
     private ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
 
-    private void populateCategories()
+    private void populateCategories(List<Category> list)
     {
-//        categories.clear();
-//        categories.forEach(category -> {
-//            CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
-//            categories.add(categoryFx);
-//        });
+        categories.clear();
+        list.forEach(category -> {
+            CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
+            categories.add(categoryFx);
+        });
     }
-    public void fetchDataFromDataBase()
-    {
-//        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        List<Category> categories = categoryDao.queryForAll(Category.class); // sciagniecie wszystkich odpowiedzi
-//        populateCategories();// wrzucenie ich do datamodelu
+    public void fetchDataFromDataBase() throws ApplicationException {
+        CategoryDao categoryDao = new CategoryDao(); // nowy dao
+        List<Category> categoryList = categoryDao.queryForAll(Category.class); // sciagniecie wszystkich odpowiedzi
+        populateCategories(categoryList);// wrzucenie ich do datamodelu
     }
 
     public void deleteCategoryById()
