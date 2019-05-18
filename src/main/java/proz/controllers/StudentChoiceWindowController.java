@@ -8,10 +8,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import proz.database.models.Category;
+import proz.models.CategoryDataModel;
 import proz.models.CategoryFxModel;
 import proz.models.TestFxModel;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
+import proz.utils.exceptions.ApplicationException;
 
 import java.util.Optional;
 
@@ -26,6 +29,9 @@ public class StudentChoiceWindowController
     @FXML
     private Pane userChoicePanel;
 
+    private CategoryDataModel categoryDataModel;
+
+
     private void disableBeginButtonUntilTestChosen()
     {
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
@@ -37,16 +43,23 @@ public class StudentChoiceWindowController
     {
 //        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
 //                testNameTable.setItems(newModelValue.getListOfTests()));
+
     }
 
     // TODO: tutaj trzeba będzie zrobic zapytanie o wszystkie kategorie i umiescic je w categoryTable
     @FXML
     private void initialize()
     {
-//        categoryTable.setItems(testData.getCategories());
+        this.categoryDataModel = new CategoryDataModel();
+        try {
+            this.categoryDataModel.fetchDataFromDataBase();
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+        categoryTable.setItems(categoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
-//        categoryTable.getSelectionModel().selectFirst();
+        categoryTable.getSelectionModel().selectFirst();
     }
 
     @FXML
