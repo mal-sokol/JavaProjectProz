@@ -10,10 +10,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import proz.models.CategoryFxModel;
-import proz.models.TestFxModel;
+import proz.models.*;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
+import proz.utils.exceptions.ApplicationException;
 
 import java.util.Optional;
 
@@ -31,6 +31,9 @@ public class TeacherChoiceWindowController
     private ContextMenu categoryContextMenu;
     @FXML
     private ContextMenu testContextMenu;
+
+    private CategoryDataModel categoryDataModel = new CategoryDataModel();
+    private TestDataModel testDataModel = new TestDataModel();
 
     private void disableBeginButtonUntilTestChosen()
     {
@@ -51,27 +54,61 @@ public class TeacherChoiceWindowController
 
     private void showAvailableTestsOnCategoryPicked()
     {
-        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
-        {
-//            if(!categoryTable.getItems().isEmpty())
-//                testNameTable.setItems(newModelValue.getListOfTests());
+        categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            categoryDataModel.setCategory(newValue);
+            if (categoryDataModel.getCategory() != null)
+            {
+                try {
+                    testDataModel.getTestsFromCategory(categoryDataModel.getCategory().getCategoryId());
+                } catch (Exception e) {
+                    DialogsUtils.errorDialog(e.getMessage());
+                }
+            }
         });
     }
 
-    //Metody o tych samych nazwach co w StudentChoiceWindowController mają mieć te same zadanie tutaj co tam, czytaj tamtejsze TODO
+//    private void showAvailableTestsOnCategoryPicked()
+//    {
+//        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
+//        {
+////            if(!categoryTable.getItems().isEmpty())
+////                testNameTable.setItems(newModelValue.getListOfTests());
+//        });
+//    }
+
+    private void storeSelectedTest()
+    {
+        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                testDataModel.setTest(newValue));
+    }
+
+    private void fetchCategoryDataFromDataBase()
+    {
+        try {
+            categoryDataModel.fetchDataFromDataBase();
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+    }
+
     @FXML
     private void initialize()
     {
-//        categoryTable.setItems(testData.getCategories());
+        fetchCategoryDataFromDataBase();
+        categoryTable.setItems(categoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
-        disableContextMenusOptionsWhenCannotBeUsed();
         showAvailableTestsOnCategoryPicked();
-//        categoryTable.getSelectionModel().selectFirst();
+        storeSelectedTest();
+        testNameTable.setItems(testDataModel.getTests());
+        disableContextMenusOptionsWhenCannotBeUsed();
+        categoryTable.getSelectionModel().selectFirst();
+
     }
 
     @FXML
     private void logout()
     {
+        UserDataModel.clearCurrentUser();
         FxmlUtils.switchScene("/fxmlFiles/StartWindow.fxml", teacherChoicePanel,
                 "/images/testSys.png");
     }
@@ -129,22 +166,19 @@ public class TeacherChoiceWindowController
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
     }
-    //TODO: dodawanie bezpośrednio do bazy danych przez dialog, następnie usuniecie zawartośći
-    // z category table i ponowne wczytanie jej z bazy danych albo aktualizacja zawartości w zalezności od tego co prostsze
+
     @FXML
     private void addCategory()
     {
         Optional<String> newCategory = DialogsUtils.addCategoryDialog();
         if(newCategory.isPresent() && !newCategory.get().trim().isEmpty())
         {
-//            ObservableList<TestFxModel> newTests = FXCollections.observableArrayList();
-//            testData.getCategories().add(new CategoryFxModel(newCategory.get(), 4, newTests));
-//            //testNameTable.getItems().clear();
-//            //categoryTable.getItems().add(new CategoryFxModel(newCategory.get(), 4, newTests));
-//            //categoryTable.getSelectionModel().clearSelection();
-//            //categoryTable.getItems().clear();
-//            //categoryTable.setItems(testData.getCategories());
-//            categoryTable.getSelectionModel().selectLast();
+            try {
+                categoryDataModel.saveCategoryInDataBase(newCategory.get());
+            } catch (ApplicationException e) {
+                DialogsUtils.errorDialog(e.getMessage());
+            }
+            categoryTable.getSelectionModel().selectLast();
         }
     }
 
@@ -171,27 +205,30 @@ public class TeacherChoiceWindowController
         }
     }
 
-    private void editCategoryWhenDialogFilled(CategoryFxModel selectedCategory, Optional<String> editedCategory)
+    private void editCategoryWhenDialogFilled(CategoryFxModel selectedCategory, Optional<String> editedCategory) throws ApplicationException
     {
         if(editedCategory.isPresent() && !editedCategory.get().trim().isEmpty())
         {
             selectedCategory.setCategoryName(editedCategory.get());
+            categoryDataModel.updateCategoryInDataBase(selectedCategory.getCategoryId(), editedCategory.get());
         }
     }
-    //TODO: zapis zmiany do bazy danych, następnie usuniecie zawartośći
-    // z category table i ponowne wczytanie jej z bazy danych albo aktualizacja zawartości w zalezności od tego co prostsze
+
     @FXML
     private void editCategory()
     {
-        CategoryFxModel selectedCategory = categoryTable.getSelectionModel().getSelectedItem();
-        if(selectedCategory == null)
+        if(categoryDataModel.getCategory() == null)
         {
             DialogsUtils.categoryNotSelectedDialog();
         }
         else
         {
-            Optional<String> editedCategory = DialogsUtils.editCategoryDialog(selectedCategory.getCategoryName());
-            editCategoryWhenDialogFilled(selectedCategory, editedCategory);
+            Optional<String> editedCategory = DialogsUtils.editCategoryDialog(categoryDataModel.getCategory().getCategoryName());
+            try {
+                editCategoryWhenDialogFilled(categoryDataModel.getCategory(), editedCategory);
+            } catch (ApplicationException e) {
+                DialogsUtils.errorDialog(e.getMessage());
+            }
         }
     }
 

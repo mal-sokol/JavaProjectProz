@@ -20,7 +20,7 @@ public class Main extends Application
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/testSys.png")));
         primaryStage.show();
 
-//        PrepareTestDataBase.insertTestData();
+        //PrepareTestDataBase.insertTestData();
     }
 
     public static void main(String[] args)

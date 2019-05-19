@@ -14,4 +14,13 @@ public class CategoryConverter
         categoryFx.setCategoryId(category.getCategoryId());
         return categoryFx;
     }
+
+    public static Category categoryFxToCategory(CategoryFxModel fxModel)
+    {
+        Category category = new Category();
+        category.setName(fxModel.getCategoryName());
+        category.setCategoryId(fxModel.getCategoryId());
+//        category.setTests();
+        return category;
+    }
 }

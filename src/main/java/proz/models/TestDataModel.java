@@ -9,7 +9,6 @@ import proz.database.models.Test;
 import proz.utils.converters.TestConverter;
 import proz.utils.exceptions.ApplicationException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class TestDataModel
@@ -26,9 +25,10 @@ public class TestDataModel
         });
     }
 
-    public void getTestsFromCategory(int categoryId) throws SQLException, ApplicationException {
+    public void getTestsFromCategory(int categoryId) throws ApplicationException
+    {
         TestDao testDao = new TestDao();
-        List<Test> tests = testDao.queryForTestsFromCategory(categoryId);
+        List<Test> tests = testDao.queryForTestsFromCategory(testDao, categoryId);
         populateTests(tests);
     }
 

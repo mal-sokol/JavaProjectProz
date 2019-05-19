@@ -8,10 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import proz.models.CategoryDataModel;
-import proz.models.CategoryFxModel;
-import proz.models.TestDataModel;
-import proz.models.TestFxModel;
+import proz.models.*;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
 import proz.utils.exceptions.ApplicationException;
@@ -48,7 +45,6 @@ public class StudentChoiceWindowController
                 } catch (Exception e) {
                     DialogsUtils.errorDialog(e.getMessage());
                 }
-                testNameTable.setItems(testDataModel.getTests());
             }
         });
     }
@@ -59,24 +55,31 @@ public class StudentChoiceWindowController
                 testDataModel.setTest(newValue));
     }
 
-    @FXML
-    private void initialize()
+    private void fetchCategoryDataFromDataBase()
     {
         try {
             categoryDataModel.fetchDataFromDataBase();
         } catch (ApplicationException e) {
             DialogsUtils.errorDialog(e.getMessage());
         }
+    }
+
+    @FXML
+    private void initialize()
+    {
+        fetchCategoryDataFromDataBase();
         categoryTable.setItems(categoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
-        categoryTable.getSelectionModel().selectFirst();
         showAvailableTestsOnCategoryPicked();
         storeSelectedTest();
+        categoryTable.getSelectionModel().selectFirst();
+        testNameTable.setItems(testDataModel.getTests());
     }
 
     @FXML
     private void logout()
     {
+        UserDataModel.clearCurrentUser();
         FxmlUtils.switchScene("/fxmlFiles/StartWindow.fxml", userChoicePanel,
                 "/images/testSys.png");
     }
