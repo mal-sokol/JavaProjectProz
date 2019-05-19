@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.TestWindowController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Exit" />
+                  <MenuItem mnemonicParsing="false" text="Logout" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="How to solve test" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <TableView fx:id="questionsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="198.66668701171875" text="Test Questions" />
+        </columns>
+      </TableView>
+   </left>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="960.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="submitTestButton" mnemonicParsing="false" onMouseEntered="#highlightOnEnterButtonArea" onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="30.0" prefWidth="101.0" text="Submit test" />
+            <Button fx:id="escapeButton" mnemonicParsing="false" onMouseClicked="#goBack" onMouseEntered="#highlightOnEnterButtonArea" onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="30.0" prefWidth="70.0" text="Escape" />
+         </children>
+         <padding>
+            <Insets right="30.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="questionLabel" prefHeight="42.0" prefWidth="157.0" text="Question of the day">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="answerA" mnemonicParsing="false" text="Answer 1" />
+            <CheckBox fx:id="answerB" mnemonicParsing="false" text="Answer 2" />
+            <CheckBox fx:id="answerC" mnemonicParsing="false" text="Answer 3" />
+            <CheckBox fx:id="answerD" mnemonicParsing="false" text="Answer 4" />
+            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="700.0" spacing="15.0">
+               <children>
+                  <Button fx:id="previousButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Previous" />
+                  <Button fx:id="submitButton" mnemonicParsing="false" prefWidth="70.0" text="Submit" />
+                  <Button fx:id="nextButton" mnemonicParsing="false" prefWidth="70.0" text="Next" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="30.0" left="50.0" right="30.0" top="30.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

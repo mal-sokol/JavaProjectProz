@@ -11,30 +11,26 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="userChoicePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="620.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.StudentChoiceWindowController">
+<BorderPane fx:id="userChoicePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.StudentChoiceWindowController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Options">
-                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit"/>
-                <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout"/>
+                <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" onAction="#showStudentGuideDialog" text="How to solve test"/>
+                <MenuItem mnemonicParsing="false" onAction="#showStudentGuideDialog" text="How to solve test" />
             </Menu>
         </MenuBar>
     </top>
     <bottom>
         <HBox alignment="BOTTOM_RIGHT" spacing="40.0" BorderPane.alignment="CENTER">
             <padding>
-                <Insets right="30.0"/>
+                <Insets right="30.0" />
             </padding>
-            <Button fx:id="beginTestButton" mnemonicParsing="false" onMouseEntered="#highlightOnEnterButtonArea"
-                    onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="30.0" prefWidth="70.0"
-                    text="Begin test">
+            <Button fx:id="beginTestButton" mnemonicParsing="false" onMouseClicked="#goToTest" onMouseEntered="#highlightOnEnterButtonArea" onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="30.0" prefWidth="70.0" text="Begin test">
                 <HBox.margin>
-                    <Insets bottom="10.0" top="10.0"/>
+                    <Insets bottom="10.0" top="10.0" />
             </HBox.margin></Button>
         </HBox>
     </bottom>

@@ -7,14 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import proz.controllers.ControlledScreen;
 
 public class FxmlUtils
 {
     private FxmlUtils() {}
 
+    private static FXMLLoader loader;
+
     public static Pane fxmlLoader(String fxmlPath)
     {
-        FXMLLoader loader = new FXMLLoader(FxmlUtils.class.getResource(fxmlPath));
+        loader = new FXMLLoader(FxmlUtils.class.getResource(fxmlPath));
         try
         {
             return loader.load();
@@ -46,5 +49,9 @@ public class FxmlUtils
         FxmlUtils.changeApplicationImage(stage, pathToImage);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static ControlledScreen getController() {
+        return loader.getController();
     }
 }

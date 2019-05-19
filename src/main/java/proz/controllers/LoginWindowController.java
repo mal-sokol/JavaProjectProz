@@ -19,7 +19,7 @@ import proz.utils.exceptions.ApplicationException;
 
 import java.sql.SQLException;
 
-public class LoginWindowController
+public class LoginWindowController implements ControlledScreen
 {
     @FXML
     private CheckBox teacherCheckBox;
@@ -31,6 +31,8 @@ public class LoginWindowController
     private TextField usernameTextField;
 
     private UserFxModel userFxModel = new UserFxModel();
+
+    private ScreensController myController;
 
     private void bindModelWithView()
     {
@@ -59,8 +61,13 @@ public class LoginWindowController
     @FXML
     private void backToStartWindow(MouseEvent event)
     {
-        FxmlUtils.switchScene("/fxmlFiles/StartWindow.fxml", (Node) event.getSource(),
-                "/images/testSys.png");
+
+        if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+        {
+            myController.setScreen(ScreensFramework.startScreenID);
+        }
+//        FxmlUtils.switchScene("/fxmlFiles/StartWindow.fxml", (Node) event.getSource(),
+//                "/images/testSys.png");
 
     }
 
@@ -78,21 +85,27 @@ public class LoginWindowController
         try {
             if (teacherIsLoggingIn) {
                 if (userDataModel.loggedAsTeacher(username, password)) {
-                    FxmlUtils.switchScene("/fxmlFiles/TeacherChoiceWindow.fxml",
-                            (Node) event.getSource(), "/images/teacher.png");
+
+                    myController.setScreen(ScreensFramework.teacherWindowID);
+
+//                    FxmlUtils.switchScene("/fxmlFiles/TeacherChoiceWindow.fxml",
+//                            (Node) event.getSource(), "/images/teacher.png");
                 } else {
                     DialogsUtils.unsuccessfulLoginDialog();
                 }
             } else {
                 if (userDataModel.loggedAsStudent(username, password)) {
-                    FxmlUtils.switchScene("/fxmlFiles/StudentChoiceWindow.fxml",
-                            (Node) event.getSource(), "/images/student.png");
+
+                    myController.setScreen(ScreensFramework.studentWindowID);
+
+//                    FxmlUtils.switchScene("/fxmlFiles/StudentChoiceWindow.fxml",
+//                            (Node) event.getSource(), "/images/student.png");
                 } else {
                     DialogsUtils.unsuccessfulLoginDialog();
                 }
             }
         } catch (ApplicationException e){
-            DialogsUtils.errorDialog("Aplication Error"); 
+            DialogsUtils.errorDialog("Aplication Error");
 //            System.out.println(e.getMessage());
         } catch (SQLException sqlEx) {
             DialogsUtils.errorDialog("Database Error: " + sqlEx.getSQLState());
@@ -124,5 +137,10 @@ public class LoginWindowController
         {
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenParent) {
+        myController = screenParent;
     }
 }

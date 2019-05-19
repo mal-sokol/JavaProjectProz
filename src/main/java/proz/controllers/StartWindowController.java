@@ -11,13 +11,20 @@ import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
 import java.util.Optional;
 
-public class StartWindowController
+public class StartWindowController implements ControlledScreen
 {
+    private ScreensController myController;
+
     @FXML
     public void goToLoginPanel(MouseEvent event)
     {
-        FxmlUtils.switchScene("/fxmlFiles/LoginWindow.fxml", (Node) event.getSource(),
-                "/images/Lock.png");
+
+        if(event.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+        {
+            myController.setScreen(ScreensFramework.loginScreenID);
+        }
+//        FxmlUtils.switchScene("/fxmlFiles/LoginWindow.fxml", (Node) event.getSource(),
+//                "/images/Lock.png");
     }
 
     private void exitOnOkPressed(Optional<ButtonType> result) {
@@ -54,5 +61,10 @@ public class StartWindowController
         {
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenParent) {
+        myController = screenParent;
     }
 }

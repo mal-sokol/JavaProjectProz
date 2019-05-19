@@ -17,7 +17,7 @@ import proz.utils.FxmlUtils;
 
 import java.util.Optional;
 
-public class TeacherChoiceWindowController
+public class TeacherChoiceWindowController implements ControlledScreen
 {
     @FXML
     private TableView<CategoryFxModel> categoryTable;
@@ -31,6 +31,8 @@ public class TeacherChoiceWindowController
     private ContextMenu categoryContextMenu;
     @FXML
     private ContextMenu testContextMenu;
+
+    private ScreensController myController;
 
     private void disableBeginButtonUntilTestChosen()
     {
@@ -250,5 +252,10 @@ public class TeacherChoiceWindowController
             Optional<ButtonType> result = DialogsUtils.deleteTestConfirmationDialog();
             deleteTestWhenOkPressed(selectedCategory, selectedTest, result);
         }
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenParent) {
+        myController = screenParent;
     }
 }

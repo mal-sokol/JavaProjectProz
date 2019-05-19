@@ -21,7 +21,7 @@ import proz.utils.exceptions.ApplicationException;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class StudentChoiceWindowController
+public class StudentChoiceWindowController implements ControlledScreen
 {
     @FXML
     private TableView<CategoryFxModel> categoryTable;
@@ -32,6 +32,7 @@ public class StudentChoiceWindowController
     @FXML
     private Pane userChoicePanel;
 
+    private ScreensController myController;
     private CategoryDataModel categoryDataModel;
     private TestDataModel testDataModel;
 
@@ -77,7 +78,6 @@ public class StudentChoiceWindowController
 
     private void bindTableView() {
         this.testNameTable.setItems(this.testDataModel.getTests());
-
     }
 
     @FXML
@@ -121,5 +121,19 @@ public class StudentChoiceWindowController
         {
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
+    }
+
+    @FXML
+    private void goToTest(MouseEvent mouseEvent)
+    {
+        if(mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+        {
+            myController.setScreen(ScreensFramework.testScreenID);
+        }
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenParent) {
+        myController = screenParent;
     }
 }
