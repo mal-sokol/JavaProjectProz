@@ -29,12 +29,9 @@ public class UserDao extends CommonDao
         }
         finally
         {
-            try
-            {
+            try {
                 this.connectionSource.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 throw new ApplicationException("Close connection error");
             }
         }

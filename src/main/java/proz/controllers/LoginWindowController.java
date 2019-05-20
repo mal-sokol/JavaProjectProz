@@ -11,7 +11,6 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import proz.database.daos.UserDao;
 import proz.database.models.User;
 import proz.models.UserDataModel;
 import proz.models.UserFxModel;
@@ -67,13 +66,14 @@ public class LoginWindowController
 
     }
 
-    private List<User> getMatchingUser(boolean teacherIsLoggingIn, String username, String password, UserDao userDao, List<User> userList) {
+    private List<User> getMatchingUser(boolean teacherIsLoggingIn, String username, String password)
+    {
         try {
-            userList = userDao.queryForUser(userDao, username, password, teacherIsLoggingIn);
+            return UserDataModel.getUserDao().queryForUser(UserDataModel.getUserDao(), username, password, teacherIsLoggingIn);
         } catch (ApplicationException e) {
 //            DialogsUtils.errorDialog(e.getMessage()); // wyrzuca dwa dialogi niepotrzebnie
         }
-        return userList;
+        return null;
     }
 
     private void loginAsUser(Event event, boolean teacherIsLoggingIn, List<User> userList)
@@ -93,9 +93,8 @@ public class LoginWindowController
 
     private void loginIfUsernameAndPasswordMatches(Event event, boolean teacherIsLoggingIn, String username, String password)
     {
-        UserDao userDao = new UserDao();
-        List<User> userList = null;
-        userList = getMatchingUser(teacherIsLoggingIn, username, password, userDao, userList);
+        List<User> userList;
+        userList = getMatchingUser(teacherIsLoggingIn, username, password);
         if(userList == null || userList.isEmpty())// potrzebne oba warunki żeby nie wypluwało błędów
         {
             DialogsUtils.unsuccessfulLoginDialog();

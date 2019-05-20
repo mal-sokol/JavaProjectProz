@@ -2,10 +2,12 @@ package proz.models;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import proz.database.daos.UserDao;
 
 public class UserDataModel
 {
     private static ObjectProperty<UserFxModel> currentUser = new SimpleObjectProperty<>();
+    private static UserDao userDao = new UserDao();
 
     private UserDataModel() {}
 
@@ -27,5 +29,10 @@ public class UserDataModel
     public static void clearCurrentUser()
     {
         currentUser.set(null);
+    }
+
+    public static UserDao getUserDao()
+    {
+        return userDao;
     }
 }
