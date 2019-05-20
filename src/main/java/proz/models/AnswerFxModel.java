@@ -15,11 +15,20 @@ public class AnswerFxModel
 
     public void setAnswerId(int answerId) { this.answerId.set(answerId); }
 
-    public QuestionFxModel getQuestionId() { return questionId.get(); }
+    public QuestionFxModel getQuestionId()
+    {
+        return questionId.get();
+    }
 
-    public ObjectProperty<QuestionFxModel> questionIdProperty() { return questionId; }
+    public ObjectProperty<QuestionFxModel> questionIdProperty()
+    {
+        return questionId;
+    }
 
-    public void setQuestionId(QuestionFxModel questionId) { this.questionId.set(questionId); }
+    public void setQuestionId(QuestionFxModel questionId)
+    {
+        this.questionId.set(questionId);
+    }
 
     public String getAnswer() {
         return answer.get();

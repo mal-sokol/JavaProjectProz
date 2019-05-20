@@ -15,7 +15,7 @@ public class Test implements BaseModel
     private String name;
 
     @DatabaseField(foreign = true, columnName = "CATEGORY_ID", canBeNull = false, foreignAutoRefresh = true)
-    private Category categoryId;
+    private Category category;
 
     public int getTestId()
     {
@@ -37,14 +37,14 @@ public class Test implements BaseModel
         this.name = name;
     }
 
-    public Category getCategoryId()
+    public Category getCategory()
     {
-        return categoryId;
+        return category;
     }
 
-    public void setCategoryId(Category categoryId)
+    public void setCategory(Category category)
     {
-        this.categoryId = categoryId;
+        this.category = category;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Test implements BaseModel
         return "Test{" +
                 "testId=" + testId +
                 ", name='" + name + '\'' +
-                ", categoryId=" + categoryId +
+                ", category=" + category +
                 '}';
     }
 }

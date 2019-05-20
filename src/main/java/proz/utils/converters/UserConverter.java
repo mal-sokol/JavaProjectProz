@@ -16,6 +16,7 @@ public class UserConverter
         fxModel.setIsTeacher(user.getTeacher());
         return fxModel;
     }
+
     public static User userFxToUser(UserFxModel fxModel)
     {
         User user = new User();

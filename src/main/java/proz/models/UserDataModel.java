@@ -1,27 +1,38 @@
 package proz.models;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import proz.database.daos.UserDao;
-import proz.database.models.User;
-import proz.utils.exceptions.ApplicationException;
-
-import java.sql.SQLException;
 
 public class UserDataModel
 {
+    private static ObjectProperty<UserFxModel> currentUser = new SimpleObjectProperty<>();
+    private static UserDao userDao = new UserDao();
 
-    /*PROPOZYCJA LOGOWANIA*/
-    public boolean loggedAsTeacher(String username, String password) throws ApplicationException, SQLException {
+    private UserDataModel() {}
 
-        UserDao userDao = new UserDao();
-        Boolean isLogged = userDao.getQueryBuilder(User.class).where().eq("USERNAME", username).and().eq("PASSWORD", password).and().eq("TEACHER", true).countOf() > 0;
-        return isLogged;
+    public static UserFxModel getCurrentUser()
+    {
+        return currentUser.get();
     }
 
-    public boolean loggedAsStudent(String username, String password) throws ApplicationException, SQLException {
-
-        UserDao userDao = new UserDao();
-        Boolean isLogged = userDao.getQueryBuilder(User.class).where().eq("USERNAME", username).and().eq("PASSWORD", password).countOf() > 0;
-        return isLogged;
+    public static ObjectProperty<UserFxModel> currentUserProperty()
+    {
+        return currentUser;
     }
 
+    public static void setCurrentUser(UserFxModel currentUser)
+    {
+        UserDataModel.currentUser.set(currentUser);
+    }
+
+    public static void clearCurrentUser()
+    {
+        currentUser.set(null);
+    }
+
+    public static UserDao getUserDao()
+    {
+        return userDao;
+    }
 }
