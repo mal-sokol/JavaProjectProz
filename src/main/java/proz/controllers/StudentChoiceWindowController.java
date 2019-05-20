@@ -8,14 +8,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import proz.database.models.Category;
-import proz.models.CategoryDataModel;
-import proz.models.CategoryFxModel;
-import proz.models.TestDataModel;
-import proz.models.TestFxModel;
+import proz.models.*;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
-import proz.utils.converters.CategoryConverter;
 import proz.utils.exceptions.ApplicationException;
 
 import java.sql.SQLException;
@@ -41,48 +36,52 @@ public class StudentChoiceWindowController
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
     }
 
-    /*PROPOZYCJA WYSWIETLANIA TESTOW*/
     private void showAvailableTestsOnCategoryPicked()
     {
-        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) -> {
-            try {
-                testDataModel.fetchTestsInCategory(CategoryConverter.categoryFxToCategory(newModelValue));
-            } catch (ApplicationException e) {
-                DialogsUtils.errorDialog(e.getMessage());
-            } catch (SQLException e) {
-                DialogsUtils.errorDialog("Database Error: " + e.getSQLState());
+        categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            CategoryDataModel.setCategory(newValue);
+            if (CategoryDataModel.getCategory() != null)
+            {
+                try {
+                    TestDataModel.getTestsFromCategory(CategoryDataModel.getCategory().getCategoryId());
+                } catch (Exception e) {
+                    DialogsUtils.errorDialog(e.getMessage());
+                }
             }
-            testNameTable.setItems(testDataModel.getTests());
         });
-
     }
 
-    // TODO: tutaj trzeba będzie zrobic zapytanie o wszystkie kategorie i umiescic je w categoryTable
-    @FXML
-    private void initialize()
+    private void storeSelectedTest()
     {
-        this.categoryDataModel = new CategoryDataModel();
-        this.testDataModel = new TestDataModel();
+        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                TestDataModel.setTest(newValue));
+    }
+
+    private void fetchCategoryDataFromDataBase()
+    {
         try {
-            this.categoryDataModel.fetchDataFromDataBase();
+            CategoryDataModel.fetchDataFromDataBase();
         } catch (ApplicationException e) {
             DialogsUtils.errorDialog(e.getMessage());
         }
-        categoryTable.setItems(categoryDataModel.getCategories());
-        disableBeginButtonUntilTestChosen();
-        showAvailableTestsOnCategoryPicked();
-        categoryTable.getSelectionModel().selectFirst();
-        bindTableView();
     }
 
-    private void bindTableView() {
-        this.testNameTable.setItems(this.testDataModel.getTests());
-
+    @FXML
+    private void initialize()
+    {
+        fetchCategoryDataFromDataBase();
+        categoryTable.setItems(CategoryDataModel.getCategories());
+        disableBeginButtonUntilTestChosen();
+        showAvailableTestsOnCategoryPicked();
+        storeSelectedTest();
+        categoryTable.getSelectionModel().selectFirst();
+        testNameTable.setItems(TestDataModel.getTests());
     }
 
     @FXML
     private void logout()
     {
+        UserDataModel.clearCurrentUser();
         FxmlUtils.switchScene("/fxmlFiles/StartWindow.fxml", userChoicePanel,
                 "/images/testSys.png");
     }

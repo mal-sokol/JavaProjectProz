@@ -23,6 +23,21 @@ public class QuestionFxModel
         this.questionId.set(questionId);
     }
 
+    public TestFxModel getTestId()
+    {
+        return testId.get();
+    }
+
+    public ObjectProperty<TestFxModel> testIdProperty()
+    {
+        return testId;
+    }
+
+    public void setTestId(TestFxModel testId)
+    {
+        this.testId.set(testId);
+    }
+
     public String getQuestion()
     {
         return question.get();

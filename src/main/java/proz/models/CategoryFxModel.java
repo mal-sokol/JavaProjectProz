@@ -1,18 +1,14 @@
 package proz.models;
 
-import javafx.beans.property.*;
-import javafx.collections.ObservableList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class CategoryFxModel
 {
     private StringProperty categoryName = new SimpleStringProperty();
     private IntegerProperty categoryId = new SimpleIntegerProperty();
-
-    public CategoryFxModel(String categoryName, int categoryId, ObservableList<TestFxModel> listOfTests)
-    {
-        this.setCategoryName(categoryName);
-        this.setCategoryId(categoryId);
-    }
 
     public String getCategoryName()
     {

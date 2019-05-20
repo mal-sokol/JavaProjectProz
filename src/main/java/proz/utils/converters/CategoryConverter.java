@@ -2,6 +2,7 @@ package proz.utils.converters;
 
 import proz.database.models.Category;
 import proz.models.CategoryFxModel;
+import proz.database.models.Category;
 
 public class CategoryConverter
 {
@@ -9,8 +10,10 @@ public class CategoryConverter
 
     public static CategoryFxModel categoryToCategoryFx(Category category)
     {
-        CategoryFxModel fxModel = new CategoryFxModel(category.getName(), category.getCategoryId(), null);
-        return fxModel;
+        CategoryFxModel categoryFx = new CategoryFxModel();
+        categoryFx.setCategoryName(category.getName());
+        categoryFx.setCategoryId(category.getCategoryId());
+        return categoryFx;
     }
 
     public static Category categoryFxToCategory(CategoryFxModel fxModel)

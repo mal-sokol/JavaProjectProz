@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 
 public class AnswerDataModel
 {
-    private ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList();
-    private ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
+    private static ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList();
+    private static ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
+
+    private AnswerDataModel() {}
 
     private void populateAnswers()
     {
@@ -51,28 +53,28 @@ public class AnswerDataModel
 //        fetchDataFromDataBase();
     }
 
-    public ObservableList<AnswerFxModel> getAnswers()
+    public static ObservableList<AnswerFxModel> getAnswers()
     {
         return answers;
     }
 
-    public void setAnswers(ObservableList<AnswerFxModel> answers)
+    public static void setAnswers(ObservableList<AnswerFxModel> answers)
     {
-        this.answers = answers;
+        AnswerDataModel.answers = answers;
     }
 
-    public AnswerFxModel getAnswer()
+    public static AnswerFxModel getAnswer()
     {
         return answer.get();
     }
 
-    public ObjectProperty<AnswerFxModel> answerProperty()
+    public static ObjectProperty<AnswerFxModel> answerProperty()
     {
         return answer;
     }
 
-    public void setAnswer(AnswerFxModel answer)
+    public static void setAnswer(AnswerFxModel answer)
     {
-        this.answer.set(answer);
+        AnswerDataModel.answer.set(answer);
     }
 }

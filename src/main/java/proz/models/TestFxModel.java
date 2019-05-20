@@ -38,10 +38,18 @@ public class TestFxModel
         this.testId.set(testId);
     }
 
-    public CategoryFxModel getCategoryId() { return categoryId.get(); }
+    public CategoryFxModel getCategoryId()
+    {
+        return categoryId.get();
+    }
 
-    public ObjectProperty<CategoryFxModel> categoryIdProperty() { return categoryId; }
+    public ObjectProperty<CategoryFxModel> categoryIdProperty()
+    {
+        return categoryId;
+    }
 
-    public void setCategoryId(CategoryFxModel categoryId) { this.categoryId.set(categoryId); }
-
+    public void setCategoryId(CategoryFxModel categoryId)
+    {
+        this.categoryId.set(categoryId);
+    }
 }

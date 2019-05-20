@@ -8,76 +8,81 @@ import proz.database.daos.CategoryDao;
 import proz.database.models.Category;
 import proz.utils.converters.CategoryConverter;
 import proz.utils.exceptions.ApplicationException;
-
 import java.util.List;
 
 public class CategoryDataModel
 {
-    private ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
-    private ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
+    private static ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
+    private static ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
+    private static CategoryDao categoryDao = new CategoryDao();
 
-    private void populateCategories(List<Category> list)
+    private CategoryDataModel() {}
+
+    private static void populateCategories(List<Category> categoryList)
     {
         categories.clear();
-        list.forEach(category -> {
+        categoryList.forEach(category -> {
             CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
             categories.add(categoryFx);
         });
     }
-    public void fetchDataFromDataBase() throws ApplicationException {
-        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-        List<Category> categoryList = categoryDao.queryForAll(Category.class); // sciagniecie wszystkich odpowiedzi
-        populateCategories(categoryList);// wrzucenie ich do datamodelu
+    public static void fetchDataFromDataBase() throws ApplicationException
+    {
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categories = categoryDao.queryForAll(Category.class);
+        populateCategories(categories);
     }
 
     public void deleteCategoryById()
     {
 //        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        CategoryDao.deleteById(Category.class, category.getValue().getCategoryId())//usuniecie zaznaczonej odpowiedzi
+//        CategoryDao.deleteById(Category.class, category.getValue().getCategory())//usuniecie zaznaczonej odpowiedzi
         // fetchDataFromDataBase();
 //        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
 
-    public void saveCategoryInDataBase(String categoryName)
+    public static void saveCategoryInDataBase(String categoryName) throws ApplicationException
     {
-//        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        Category newCategory = new Category();
-//        newCategory.setCategoryName(categoryName);
-//        categoryDao.createOrUpdate(newCategory);
-//        fetchDataFromDataBase();
+        Category newCategory = new Category();
+        newCategory.setName(categoryName);
+        categoryDao.createOrUpdate(newCategory);
+        fetchDataFromDataBase();
     }
 
-    public void updateCategoryInDataBase()
+    public static void updateCategoryInDataBase(int categoryId, String newName) throws ApplicationException
     {
-//        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        Category updatedCategory = categoryDao.findById(Category.class, getCategory().getCategoryId());
-//        updatedCategory.setCategory(getCategory().getCategory());
-//        categoryDao.createOrUpdate(updatedCategory);
-//        fetchDataFromDataBase();
+        Category updatedCategory = categoryDao.findById(Category.class, categoryId);
+        updatedCategory.setName(newName);
+        categoryDao.createOrUpdate(updatedCategory);
     }
 
-    public ObservableList<CategoryFxModel> getCategories()
+    public static ObservableList<CategoryFxModel> getCategories()
     {
         return categories;
     }
 
-    public void setCategories(ObservableList<CategoryFxModel> categories)
+    public static void setCategories(ObservableList<CategoryFxModel> categories)
     {
-        this.categories = categories;
+        CategoryDataModel.categories = categories;
     }
 
-    public CategoryFxModel getCategory()
+    public static CategoryFxModel getCategory()
     {
         return category.get();
     }
 
-    public ObjectProperty<CategoryFxModel> categoryProperty()
+    public static ObjectProperty<CategoryFxModel> categoryProperty()
     {
         return category;
     }
 
-    public void setCategory(CategoryFxModel category)
+    public static void setCategory(CategoryFxModel category)
     {
-        this.category.set(category);
+        CategoryDataModel.category.set(category);
+    }
+
+    public static CategoryDao getCategoryDao()
+    {
+        return categoryDao;
     }
 }

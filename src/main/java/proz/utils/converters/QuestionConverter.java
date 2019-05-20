@@ -20,7 +20,7 @@ public class QuestionConverter
     {
         Question question = new Question();
         question.setQuestion(fxModel.getQuestion());
-        question.setTestId(TestConverter.testFxtoTest(fxModel.getTestId()));
+        question.setTestId(TestConverter.testFxToTest(fxModel.getTestId()));
         question.setQuestionId(fxModel.getQuestionId());
         return question;
     }
