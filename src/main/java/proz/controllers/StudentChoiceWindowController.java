@@ -26,9 +26,6 @@ public class StudentChoiceWindowController
     @FXML
     private Pane userChoicePanel;
 
-    private CategoryDataModel categoryDataModel = new CategoryDataModel();
-    private TestDataModel testDataModel = new TestDataModel();
-
     private void disableBeginButtonUntilTestChosen()
     {
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
@@ -37,11 +34,11 @@ public class StudentChoiceWindowController
     private void showAvailableTestsOnCategoryPicked()
     {
         categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            categoryDataModel.setCategory(newValue);
-            if (categoryDataModel.getCategory() != null)
+            CategoryDataModel.setCategory(newValue);
+            if (CategoryDataModel.getCategory() != null)
             {
                 try {
-                    testDataModel.getTestsFromCategory(categoryDataModel.getCategory().getCategoryId());
+                    TestDataModel.getTestsFromCategory(CategoryDataModel.getCategory().getCategoryId());
                 } catch (Exception e) {
                     DialogsUtils.errorDialog(e.getMessage());
                 }
@@ -52,13 +49,13 @@ public class StudentChoiceWindowController
     private void storeSelectedTest()
     {
         testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                testDataModel.setTest(newValue));
+                TestDataModel.setTest(newValue));
     }
 
     private void fetchCategoryDataFromDataBase()
     {
         try {
-            categoryDataModel.fetchDataFromDataBase();
+            CategoryDataModel.fetchDataFromDataBase();
         } catch (ApplicationException e) {
             DialogsUtils.errorDialog(e.getMessage());
         }
@@ -68,12 +65,12 @@ public class StudentChoiceWindowController
     private void initialize()
     {
         fetchCategoryDataFromDataBase();
-        categoryTable.setItems(categoryDataModel.getCategories());
+        categoryTable.setItems(CategoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
         storeSelectedTest();
         categoryTable.getSelectionModel().selectFirst();
-        testNameTable.setItems(testDataModel.getTests());
+        testNameTable.setItems(TestDataModel.getTests());
     }
 
     @FXML

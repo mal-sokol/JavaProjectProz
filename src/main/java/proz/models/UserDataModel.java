@@ -7,6 +7,8 @@ public class UserDataModel
 {
     private static ObjectProperty<UserFxModel> currentUser = new SimpleObjectProperty<>();
 
+    private UserDataModel() {}
+
     public static UserFxModel getCurrentUser()
     {
         return currentUser.get();

@@ -12,19 +12,21 @@ import java.util.List;
 
 public class CategoryDataModel
 {
-    private ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
-    private ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
-    private CategoryDao categoryDao = new CategoryDao();
+    private static ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
+    private static ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
+    private static CategoryDao categoryDao = new CategoryDao();
 
-    private void populateCategories(List<Category> categories)
+    private CategoryDataModel() {}
+
+    private static void populateCategories(List<Category> categoryList)
     {
-        this.categories.clear();
-        categories.forEach(category -> {
+        categories.clear();
+        categoryList.forEach(category -> {
             CategoryFxModel categoryFx = CategoryConverter.categoryToCategoryFx(category);
-            this.categories.add(categoryFx);
+            categories.add(categoryFx);
         });
     }
-    public void fetchDataFromDataBase() throws ApplicationException
+    public static void fetchDataFromDataBase() throws ApplicationException
     {
         CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.queryForAll(Category.class);
@@ -39,7 +41,7 @@ public class CategoryDataModel
 //        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
 
-    public void saveCategoryInDataBase(String categoryName) throws ApplicationException
+    public static void saveCategoryInDataBase(String categoryName) throws ApplicationException
     {
         Category newCategory = new Category();
         newCategory.setName(categoryName);
@@ -47,35 +49,40 @@ public class CategoryDataModel
         fetchDataFromDataBase();
     }
 
-    public void updateCategoryInDataBase(int categoryId, String newName) throws ApplicationException
+    public static void updateCategoryInDataBase(int categoryId, String newName) throws ApplicationException
     {
         Category updatedCategory = categoryDao.findById(Category.class, categoryId);
         updatedCategory.setName(newName);
         categoryDao.createOrUpdate(updatedCategory);
     }
 
-    public ObservableList<CategoryFxModel> getCategories()
+    public static ObservableList<CategoryFxModel> getCategories()
     {
         return categories;
     }
 
-    public void setCategories(ObservableList<CategoryFxModel> categories)
+    public static void setCategories(ObservableList<CategoryFxModel> categories)
     {
-        this.categories = categories;
+        CategoryDataModel.categories = categories;
     }
 
-    public CategoryFxModel getCategory()
+    public static CategoryFxModel getCategory()
     {
         return category.get();
     }
 
-    public ObjectProperty<CategoryFxModel> categoryProperty()
+    public static ObjectProperty<CategoryFxModel> categoryProperty()
     {
         return category;
     }
 
-    public void setCategory(CategoryFxModel category)
+    public static void setCategory(CategoryFxModel category)
     {
-        this.category.set(category);
+        CategoryDataModel.category.set(category);
+    }
+
+    public static CategoryDao getCategoryDao()
+    {
+        return categoryDao;
     }
 }

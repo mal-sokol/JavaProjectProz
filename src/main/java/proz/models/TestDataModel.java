@@ -13,47 +13,49 @@ import java.util.List;
 
 public class TestDataModel
 {
-    private ObservableList<TestFxModel> tests = FXCollections.observableArrayList();
-    private ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>();
+    private static ObservableList<TestFxModel> tests = FXCollections.observableArrayList();
+    private static ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>();
 
-    private void populateTests(List<Test> tests)
+    private TestDataModel() {}
+
+    private static void populateTests(List<Test> testList)
     {
-        this.tests.clear();
-        tests.forEach(test -> {
+        tests.clear();
+        testList.forEach(test -> {
             TestFxModel testFx = TestConverter.testToTestFx(test);
-            this.tests.add(testFx);
+            tests.add(testFx);
         });
     }
 
-    public void getTestsFromCategory(int categoryId) throws ApplicationException
+    public static void getTestsFromCategory(int categoryId) throws ApplicationException
     {
         TestDao testDao = new TestDao();
         List<Test> tests = testDao.queryForTestsFromCategory(testDao, categoryId);
         populateTests(tests);
     }
 
-    public ObservableList<TestFxModel> getTests()
+    public static ObservableList<TestFxModel> getTests()
     {
         return tests;
     }
 
-    public void setTests(ObservableList<TestFxModel> tests)
+    public static void setTests(ObservableList<TestFxModel> tests)
     {
-        this.tests = tests;
+        TestDataModel.tests = tests;
     }
 
-    public TestFxModel getTest()
+    public static TestFxModel getTest()
     {
         return test.get();
     }
 
-    public ObjectProperty<TestFxModel> testProperty()
+    public static ObjectProperty<TestFxModel> testProperty()
     {
         return test;
     }
 
-    public void setTest(TestFxModel test)
+    public static void setTest(TestFxModel test)
     {
-        this.test.set(test);
+        TestDataModel.test.set(test);
     }
 }

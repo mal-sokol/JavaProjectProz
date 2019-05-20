@@ -32,9 +32,6 @@ public class TeacherChoiceWindowController
     @FXML
     private ContextMenu testContextMenu;
 
-    private CategoryDataModel categoryDataModel = new CategoryDataModel();
-    private TestDataModel testDataModel = new TestDataModel();
-
     private void disableBeginButtonUntilTestChosen()
     {
         beginTestButton.disableProperty().bind(testNameTable.getSelectionModel().selectedItemProperty().isNull());
@@ -55,11 +52,11 @@ public class TeacherChoiceWindowController
     private void showAvailableTestsOnCategoryPicked()
     {
         categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            categoryDataModel.setCategory(newValue);
-            if (categoryDataModel.getCategory() != null)
+            CategoryDataModel.setCategory(newValue);
+            if (CategoryDataModel.getCategory() != null)
             {
                 try {
-                    testDataModel.getTestsFromCategory(categoryDataModel.getCategory().getCategoryId());
+                    TestDataModel.getTestsFromCategory(CategoryDataModel.getCategory().getCategoryId());
                 } catch (Exception e) {
                     DialogsUtils.errorDialog(e.getMessage());
                 }
@@ -79,13 +76,13 @@ public class TeacherChoiceWindowController
     private void storeSelectedTest()
     {
         testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                testDataModel.setTest(newValue));
+                TestDataModel.setTest(newValue));
     }
 
     private void fetchCategoryDataFromDataBase()
     {
         try {
-            categoryDataModel.fetchDataFromDataBase();
+            CategoryDataModel.fetchDataFromDataBase();
         } catch (ApplicationException e) {
             DialogsUtils.errorDialog(e.getMessage());
         }
@@ -95,11 +92,11 @@ public class TeacherChoiceWindowController
     private void initialize()
     {
         fetchCategoryDataFromDataBase();
-        categoryTable.setItems(categoryDataModel.getCategories());
+        categoryTable.setItems(CategoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
         storeSelectedTest();
-        testNameTable.setItems(testDataModel.getTests());
+        testNameTable.setItems(TestDataModel.getTests());
         disableContextMenusOptionsWhenCannotBeUsed();
         categoryTable.getSelectionModel().selectFirst();
 
@@ -174,7 +171,7 @@ public class TeacherChoiceWindowController
         if(newCategory.isPresent() && !newCategory.get().trim().isEmpty())
         {
             try {
-                categoryDataModel.saveCategoryInDataBase(newCategory.get());
+                CategoryDataModel.saveCategoryInDataBase(newCategory.get());
             } catch (ApplicationException e) {
                 DialogsUtils.errorDialog(e.getMessage());
             }
@@ -210,22 +207,22 @@ public class TeacherChoiceWindowController
         if(editedCategory.isPresent() && !editedCategory.get().trim().isEmpty())
         {
             selectedCategory.setCategoryName(editedCategory.get());
-            categoryDataModel.updateCategoryInDataBase(selectedCategory.getCategoryId(), editedCategory.get());
+            CategoryDataModel.updateCategoryInDataBase(selectedCategory.getCategoryId(), editedCategory.get());
         }
     }
 
     @FXML
     private void editCategory()
     {
-        if(categoryDataModel.getCategory() == null)
+        if(CategoryDataModel.getCategory() == null)
         {
             DialogsUtils.categoryNotSelectedDialog();
         }
         else
         {
-            Optional<String> editedCategory = DialogsUtils.editCategoryDialog(categoryDataModel.getCategory().getCategoryName());
+            Optional<String> editedCategory = DialogsUtils.editCategoryDialog(CategoryDataModel.getCategory().getCategoryName());
             try {
-                editCategoryWhenDialogFilled(categoryDataModel.getCategory(), editedCategory);
+                editCategoryWhenDialogFilled(CategoryDataModel.getCategory(), editedCategory);
             } catch (ApplicationException e) {
                 DialogsUtils.errorDialog(e.getMessage());
             }
