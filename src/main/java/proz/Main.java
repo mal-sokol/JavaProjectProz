@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import proz.database.utils.DbManager;
 import proz.utils.FxmlUtils;
 import proz.utils.exceptions.ApplicationException;
 
@@ -20,6 +21,7 @@ public class Main extends Application
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/testSys.png")));
         primaryStage.show();
 
+        DbManager.initDatabase();
         //PrepareTestDataBase.insertTestData();
     }
 

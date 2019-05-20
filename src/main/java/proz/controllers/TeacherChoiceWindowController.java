@@ -53,10 +53,12 @@ public class TeacherChoiceWindowController
     {
         categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             CategoryDataModel.setCategory(newValue);
-            if (CategoryDataModel.getCategory() != null)
+            CategoryFxModel category = CategoryDataModel.getCategory();
+            if (category != null)
             {
                 try {
-                    TestDataModel.getTestsFromCategory(CategoryDataModel.getCategory().getCategoryId());
+                    TestDataModel.setParentCategory(category);
+                    TestDataModel.getTestsFromCategory(category.getCategoryId());
                 } catch (Exception e) {
                     DialogsUtils.errorDialog(e.getMessage());
                 }
@@ -225,14 +227,34 @@ public class TeacherChoiceWindowController
     @FXML
     private void editTest(ActionEvent event)
     {
+        if(TestDataModel.getTest() == null)
+        {
+            DialogsUtils.testNotSelectedDialog();
+        }
+        else
+        {
+//            Optional<String> editedTest = DialogsUtils.editTestDialog(TestDataModel.getTest().getTestName());
+//            try {
+//                editTestWhenDialogFilled(TestDataModel.getTest(), editedTest);
+//            } catch (ApplicationException e) {
+//                DialogsUtils.errorDialog(e.getMessage());
+//            }
+        }
     }
 
     private void deleteCategoryWhenOkPressed(CategoryFxModel selectedCategory, Optional<ButtonType> result)
     {
         if(result.isPresent() && result.get() == ButtonType.OK)
         {
-//            testNameTable.getItems().clear();
-//            testData.getCategories().remove(selectedCategory);
+            testNameTable.getItems().clear();
+            try {
+                TestDataModel.deleteTestsFromCategory(selectedCategory.getCategoryId());
+                CategoryDataModel.deleteCategoryById(selectedCategory.getCategoryId());
+            } catch (ApplicationException e) {
+                DialogsUtils.errorDialog(e.getMessage());
+            }
+            categoryTable.getSelectionModel().selectNext();
+            categoryTable.refresh();
         }
     }
     //TODO: usuniecie z bd
@@ -251,12 +273,18 @@ public class TeacherChoiceWindowController
         }
     }
 
-    private void deleteTestWhenOkPressed(CategoryFxModel selectedCategory, TestFxModel selectedTest, Optional<ButtonType> result)
+    private void deleteTestWhenOkPressed(TestFxModel selectedTest, Optional<ButtonType> result)
     {
         if(result.isPresent() && result.get() == ButtonType.OK)
         {
-//            testData.getCategories().get(testData.getCategories().indexOf(selectedCategory)).getListOfTests().
-//                    remove(selectedTest);
+            testNameTable.getItems().clear();
+            try {
+                TestDataModel.deleteTestById(selectedTest.getTestId());
+            } catch (ApplicationException e) {
+                DialogsUtils.errorDialog(e.getMessage());
+            }
+            testNameTable.getSelectionModel().selectNext();
+            testNameTable.refresh();
         }
     }
 
@@ -274,7 +302,7 @@ public class TeacherChoiceWindowController
         else
         {
             Optional<ButtonType> result = DialogsUtils.deleteTestConfirmationDialog();
-            deleteTestWhenOkPressed(selectedCategory, selectedTest, result);
+            deleteTestWhenOkPressed(selectedTest, result);
         }
     }
 }

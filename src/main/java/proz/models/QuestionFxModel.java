@@ -53,10 +53,5 @@ public class QuestionFxModel
         this.question.set(question);
     }
 
-    public TestFxModel getTestId() { return testId.get(); }
-
-    public ObjectProperty<TestFxModel> testIdProperty() { return testId; }
-
-    public void setTestId(TestFxModel testId) { this.testId.set(testId); }
 
 }

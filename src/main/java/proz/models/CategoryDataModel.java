@@ -33,12 +33,13 @@ public class CategoryDataModel
         populateCategories(categories);
     }
 
-    public void deleteCategoryById()
-    {
-//        CategoryDao categoryDao = new CategoryDao(); // nowy dao
-//        CategoryDao.deleteById(Category.class, category.getValue().getCategory())//usuniecie zaznaczonej odpowiedzi
-        // fetchDataFromDataBase();
-//        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
+    public static void deleteCategoryById(int categoryId) throws ApplicationException {
+
+        CategoryDao categoryDao = new CategoryDao(); // nowy dao
+        TestDataModel.deleteTestsFromCategory(categoryId);
+        categoryDao.deleteById(Category.class, categoryId); //usuniecie zaznaczonej odpowiedzi
+        fetchDataFromDataBase();
+        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
 
     public static void saveCategoryInDataBase(String categoryName) throws ApplicationException

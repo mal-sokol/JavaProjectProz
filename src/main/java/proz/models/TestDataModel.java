@@ -4,7 +4,10 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import proz.database.daos.QuestionDao;
 import proz.database.daos.TestDao;
+import proz.database.models.Category;
+import proz.database.models.Question;
 import proz.database.models.Test;
 import proz.utils.converters.TestConverter;
 import proz.utils.exceptions.ApplicationException;
@@ -15,6 +18,8 @@ public class TestDataModel
 {
     private static ObservableList<TestFxModel> tests = FXCollections.observableArrayList();
     private static ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>();
+    private static ObjectProperty<CategoryFxModel> parentCategory = new SimpleObjectProperty<>();
+
 
     private TestDataModel() {}
 
@@ -30,10 +35,27 @@ public class TestDataModel
     public static void getTestsFromCategory(int categoryId) throws ApplicationException
     {
         TestDao testDao = new TestDao();
-        List<Test> tests = testDao.queryForTestsFromCategory(testDao, categoryId);
+        List<Test> tests = testDao.queryForTestsFromCategory(categoryId);
         populateTests(tests);
     }
 
+    public static void deleteTestsFromCategory(int categoryId) throws ApplicationException
+    {
+        TestDao testDao = new TestDao();
+        testDao.deleteTestsFromCategory(categoryId);
+        tests.clear();
+    }
+
+    public static void deleteTestById(int testId) throws ApplicationException
+    {
+        TestDao testDao = new TestDao(); // nowy dao
+        QuestionDao questionDao = new QuestionDao();
+        questionDao.deleteQuestionsFromTest(testId);
+        testDao.deleteById(Test.class, testId); //usuniecie zaznaczonej odpowiedzi
+        getTestsFromCategory(parentCategory.get().getCategoryId());
+        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
+    }
+    
     public static ObservableList<TestFxModel> getTests()
     {
         return tests;
@@ -58,4 +80,20 @@ public class TestDataModel
     {
         TestDataModel.test.set(test);
     }
+
+
+
+    public static CategoryFxModel getParentCategory() {
+        return parentCategory.get();
+    }
+
+    public static ObjectProperty<CategoryFxModel> parentCategoryProperty() {
+        return parentCategory;
+    }
+
+    public static void setParentCategory(CategoryFxModel parentCategory) {
+        TestDataModel.parentCategory.set(parentCategory);
+    }
+
 }
+

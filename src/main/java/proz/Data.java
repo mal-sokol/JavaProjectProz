@@ -10,17 +10,85 @@ import java.util.Date;
 
 public class Data {
 
+    private static CategoryDao categoryDao;
+    private static AnswerDao answerDao;
+    private static QuestionDao questionDao;
+    private static ResultDao resultDao;
+    private static TestDao testDao;
+    private static UserDao userDao;
 
-    public static void main(String[] args)  throws ApplicationException {
 
+
+    public static void main(String[] args) throws ApplicationException {
+
+        init();
+//        User u1 = new User();
+//        u1.setUsername("Helga");
+//        u1.setPassword("pass");
+//        u1.setTeacher(true);
+//        userDao.createOrUpdate(u1);
+//
+
+        Category c1 = new Category();
+        c1.setName("Delete Me!");
+        categoryDao.createOrUpdate(c1);
+        Category c2 = new Category();
+        c2.setName("Delete Me! I have question!");
+        categoryDao.createOrUpdate(c2);
+
+        Test t1 = new Test();
+        t1.setCategory(c2);
+        t1.setName("testestesteste");
+        testDao.createOrUpdate(t1);
+
+        Test t2 = new Test();
+        t2.setCategory(c2);
+        t2.setName("xyz");
+        testDao.createOrUpdate(t2);
+
+        Test t3 = new Test();
+        t3.setCategory(c2);
+        t3.setName("delete me too!");
+        testDao.createOrUpdate(t3);
+
+        Question q1ch1 = new Question();
+        q1ch1.setQuestion("QQQQQQQQQQQQQQQQQQQQQQQQ\n");
+        q1ch1.setTestId(t3);
+        questionDao.createOrUpdate(q1ch1);
+//        Answer a1q1ch1 = new Answer();
+//        Answer a2q1ch1 = new Answer();
+//        Answer a3q1ch1 = new Answer();
+//        Answer a4q1ch1 = new Answer();
+//        a1q1ch1.setCorrect(false);
+//        a2q1ch1.setCorrect(false);
+//        a3q1ch1.setCorrect(true);
+//        a4q1ch1.setCorrect(false);
+//        a1q1ch1.setQuestionId(q1ch1);
+//        a2q1ch1.setQuestionId(q1ch1);
+//        a3q1ch1.setQuestionId(q1ch1);
+//        a4q1ch1.setQuestionId(q1ch1);
+//        a1q1ch1.setAnswer("AAAAAAAAAAAAAAAAAAAAAAAA");
+//        a2q1ch1.setAnswer("BBBBBBBBBBBBBBBBBBBBBBBB");
+//        a3q1ch1.setAnswer("CCCCCCCCCCCCCCCCCCCCCCCC");
+//        a4q1ch1.setAnswer("DDDDDDDDDDDDDDDDDDDDDDDD");
+//        answerDao.createOrUpdate(a1q1ch1);
+//        answerDao.createOrUpdate(a2q1ch1);
+//        answerDao.createOrUpdate(a3q1ch1);
+//        answerDao.createOrUpdate(a4q1ch1);
+
+    }
+
+    public static void init() {
         DbManager.initDatabase();
-        CategoryDao categoryDao = new CategoryDao();
-        AnswerDao answerDao = new AnswerDao();
-        QuestionDao questionDao = new QuestionDao();
-        ResultDao resultDao = new ResultDao();
-        TestDao testDao = new TestDao();
-        UserDao userDao = new UserDao();
+        categoryDao = new CategoryDao();
+        answerDao = new AnswerDao();
+        questionDao = new QuestionDao();
+        resultDao = new ResultDao();
+        testDao = new TestDao();
+        userDao = new UserDao();
+    }
 
+    private void insertDatasetOne() throws ApplicationException {
 
         User u1 = new User();
         u1.setUsername("David");
@@ -58,7 +126,7 @@ public class Data {
         categoryDao.createOrUpdate(ch);
 
         Test chT1 = new Test();
-        chT1.setCategoryId(ch);
+        chT1.setCategory(ch);
         chT1.setName("Periodic table of elements");
         testDao.createOrUpdate(chT1);
 
@@ -190,7 +258,7 @@ public class Data {
 
 
         Test chT2 = new Test();
-        chT2.setCategoryId(ch);
+        chT2.setCategory(ch);
         chT2.setName("Hydrocarbons");
         testDao.createOrUpdate(chT2);
 
@@ -323,7 +391,7 @@ public class Data {
 
 
         Test chT3 = new Test();
-        chT3.setCategoryId(ch);
+        chT3.setCategory(ch);
         chT3.setName("Elements");
         testDao.createOrUpdate(chT3);
 
@@ -539,7 +607,7 @@ public class Data {
         categoryDao.createOrUpdate(l);
 
         Test lT1 = new Test();
-        lT1.setCategoryId(l);
+        lT1.setCategory(l);
         lT1.setName("Famous authors");
         testDao.createOrUpdate(lT1);
 
