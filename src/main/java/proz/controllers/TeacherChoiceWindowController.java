@@ -64,15 +64,6 @@ public class TeacherChoiceWindowController
         });
     }
 
-//    private void showAvailableTestsOnCategoryPicked()
-//    {
-//        categoryTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldModelValue, newModelValue) ->
-//        {
-////            if(!categoryTable.getItems().isEmpty())
-////                testNameTable.setItems(newModelValue.getListOfTests());
-//        });
-//    }
-
     private void storeSelectedTest()
     {
         testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
@@ -98,7 +89,8 @@ public class TeacherChoiceWindowController
         storeSelectedTest();
         testNameTable.setItems(TestDataModel.getTests());
         disableContextMenusOptionsWhenCannotBeUsed();
-        categoryTable.getSelectionModel().selectFirst();
+        if(!categoryTable.getItems().isEmpty())
+            categoryTable.getSelectionModel().selectFirst();
 
     }
 
