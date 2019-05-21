@@ -17,23 +17,31 @@ public class TestDao extends CommonDao
 
     public List<Test> queryForTestsFromCategory(TestDao dao, int categoryId) throws ApplicationException
     {
-        try
-        {
+        try {
             QueryBuilder<Test, Object> queryBuilder = dao.getQueryBuilder(Test.class);
             return queryBuilder.where().eq("CATEGORY_ID", categoryId).query();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new ApplicationException("Query for tests from category error");
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 this.connectionSource.close();
+            } catch (IOException e) {
+                throw new ApplicationException("Close connection error");
             }
-            catch (IOException e)
-            {
+        }
+    }
+
+    public Test queryForTest(TestDao dao, String testName) throws ApplicationException
+    {
+        QueryBuilder<Test, Object> queryBuilder = dao.getQueryBuilder(Test.class);
+        try {
+            return queryBuilder.where().eq("TEST_NAME", testName).query().get(0);
+        } catch (SQLException e) {
+            throw new ApplicationException("Query for test error");
+        } finally {
+            try {
+                this.connectionSource.close();
+            } catch (IOException e) {
                 throw new ApplicationException("Close connection error");
             }
         }

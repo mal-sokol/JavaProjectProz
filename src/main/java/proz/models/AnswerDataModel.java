@@ -4,13 +4,27 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import proz.database.daos.AnswerDao;
+import proz.database.models.Answer;
+import proz.database.models.Question;
+import proz.utils.exceptions.ApplicationException;
 
 public class AnswerDataModel
 {
     private static ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList();
     private static ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
+    private static AnswerDao answerDao = new AnswerDao();
 
     private AnswerDataModel() {}
+
+    public static void saveAnswerInDataBase(String answer, boolean isCorrect, Question question) throws ApplicationException
+    {
+        Answer newAnswer = new Answer();
+        newAnswer.setAnswer(answer);
+        newAnswer.setCorrect(isCorrect);
+        newAnswer.setQuestionId(question);
+        answerDao.createOrUpdate(newAnswer);
+    }
 
     private void populateAnswers()
     {
@@ -76,5 +90,10 @@ public class AnswerDataModel
     public static void setAnswer(AnswerFxModel answer)
     {
         AnswerDataModel.answer.set(answer);
+    }
+
+    public static AnswerDao getAnswerDao()
+    {
+        return answerDao;
     }
 }
