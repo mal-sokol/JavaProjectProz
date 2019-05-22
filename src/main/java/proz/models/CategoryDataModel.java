@@ -12,8 +12,8 @@ import java.util.List;
 
 public class CategoryDataModel
 {
-    private static ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList();
-    private static ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>();
+    private static ObservableList<CategoryFxModel> categories = FXCollections.observableArrayList(); // LISTA WSZYSTKICH KATEGORII
+    private static ObjectProperty<CategoryFxModel> category = new SimpleObjectProperty<>(); // KATEGORIA ZAZNACZONA W WIDOKU
     private static CategoryDao categoryDao = new CategoryDao();
 
     private CategoryDataModel() {}
@@ -28,7 +28,6 @@ public class CategoryDataModel
     }
     public static void fetchDataFromDataBase() throws ApplicationException
     {
-        CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.queryForAll(Category.class);
         populateCategories(categories);
     }

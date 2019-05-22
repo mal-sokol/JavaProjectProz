@@ -15,8 +15,8 @@ public class Main extends Application
     public void start(Stage primaryStage) throws ApplicationException
     {
         Parent root = FxmlUtils.fxmlLoader("/fxmlFiles/StartWindow.fxml");
-        primaryStage.setTitle("SuperTester3000 - name still in progress");
-        primaryStage.setScene(new Scene(root, 560, 340));
+        primaryStage.setTitle("SuperTester");
+        primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/testSys.png")));
         primaryStage.show();

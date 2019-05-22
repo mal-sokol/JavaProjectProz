@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import proz.database.models.User;
 import proz.models.UserDataModel;
-import proz.models.UserFxModel;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
 import proz.utils.converters.UserConverter;
@@ -32,15 +31,13 @@ public class LoginWindowController
     @FXML
     private TextField usernameTextField;
 
-    private UserFxModel userFxModel = new UserFxModel();
-
     private void bindModelWithView()
     {
-        usernameTextField.textProperty().bindBidirectional(userFxModel.usernameProperty());
-        passwordField.textProperty().bindBidirectional(userFxModel.passwordProperty());
-        passwordField.disableProperty().bind(userFxModel.usernameProperty().isEmpty());
-        teacherCheckBox.disableProperty().bind(userFxModel.passwordProperty().isEmpty());
-        loginButton.disableProperty().bind(userFxModel.passwordProperty().isEmpty());
+        usernameTextField.textProperty().bindBidirectional(UserDataModel.getCurrentUser().usernameProperty());
+        passwordField.textProperty().bindBidirectional(UserDataModel.getCurrentUser().passwordProperty());
+        passwordField.disableProperty().bind(UserDataModel.getCurrentUser().usernameProperty().isEmpty());
+        teacherCheckBox.disableProperty().bind(UserDataModel.getCurrentUser().passwordProperty().isEmpty());
+        loginButton.disableProperty().bind(UserDataModel.getCurrentUser().passwordProperty().isEmpty());
     }
 
     private void clearPasswordOnUsernameEmpty()
