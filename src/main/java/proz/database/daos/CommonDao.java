@@ -12,6 +12,7 @@ import proz.utils.exceptions.ApplicationException;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 public abstract class CommonDao
@@ -22,6 +23,7 @@ public abstract class CommonDao
 
     public CommonDao()
     {
+//        System.setProperty(LocalLog.LOCAL_LOG_LEVEL_PROPERTY, "ERROR");
         this.connectionSource = DbManager.getConnectionSource();
     }
 
@@ -33,6 +35,19 @@ public abstract class CommonDao
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
             throw new ApplicationException("Update error");
+        } finally {
+            this.closeDbConnection();
+        }
+    }
+
+    public <T extends BaseModel, I> void create(Collection<T> collection) throws ApplicationException
+    {
+        Dao<T, I> dao = getDao((Class<T>) collection.iterator().next().getClass());
+        try {
+            dao.create(collection);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
+            throw new ApplicationException("Create many error");
         } finally {
             this.closeDbConnection();
         }

@@ -6,7 +6,7 @@ import proz.database.daos.UserDao;
 
 public class UserDataModel
 {
-    private static ObjectProperty<UserFxModel> currentUser = new SimpleObjectProperty<>();
+    private static ObjectProperty<UserFxModel> currentUser = new SimpleObjectProperty<>(new UserFxModel()); // OBECNIE ZALOGOWANY UŻYTKOWNIK
     private static UserDao userDao = new UserDao();
 
     private UserDataModel() {}

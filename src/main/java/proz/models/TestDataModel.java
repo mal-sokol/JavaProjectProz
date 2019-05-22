@@ -14,8 +14,8 @@ import java.util.List;
 
 public class TestDataModel
 {
-    private static ObservableList<TestFxModel> tests = FXCollections.observableArrayList();
-    private static ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>();
+    private static ObservableList<TestFxModel> tests = FXCollections.observableArrayList(); // LISTA TESTÓW Z DANEJ KATEGORII
+    private static ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>(); // ZAZNACZONY TEST
     private static TestDao testDao = new TestDao();
 
     private TestDataModel() {}
