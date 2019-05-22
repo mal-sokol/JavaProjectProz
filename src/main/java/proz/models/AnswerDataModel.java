@@ -1,7 +1,5 @@
 package proz.models;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import proz.database.daos.AnswerDao;
@@ -11,8 +9,8 @@ import proz.utils.exceptions.ApplicationException;
 
 public class AnswerDataModel
 {
-    private static ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList();
-    private static ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
+    private static ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList(); // LISTA ODPOWIEDZI DLA ZAZNACZONEGO PYTANIA
+   // private static ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
     private static AnswerDao answerDao = new AnswerDao();
 
     private AnswerDataModel() {}
@@ -77,20 +75,20 @@ public class AnswerDataModel
         AnswerDataModel.answers = answers;
     }
 
-    public static AnswerFxModel getAnswer()
-    {
-        return answer.get();
-    }
-
-    public static ObjectProperty<AnswerFxModel> answerProperty()
-    {
-        return answer;
-    }
-
-    public static void setAnswer(AnswerFxModel answer)
-    {
-        AnswerDataModel.answer.set(answer);
-    }
+//    public static AnswerFxModel getAnswer()
+//    {
+//        return answer.get();
+//    }
+//
+//    public static ObjectProperty<AnswerFxModel> answerProperty()
+//    {
+//        return answer;
+//    }
+//
+//    public static void setAnswer(AnswerFxModel answer)
+//    {
+//        AnswerDataModel.answer.set(answer);
+//    }
 
     public static AnswerDao getAnswerDao()
     {

@@ -11,8 +11,8 @@ import proz.utils.exceptions.ApplicationException;
 
 public class QuestionDataModel
 {
-    private static ObservableList<TestFxModel> questions = FXCollections.observableArrayList();
-    private static ObjectProperty<TestFxModel> question = new SimpleObjectProperty<>();
+    private static ObservableList<TestFxModel> questions = FXCollections.observableArrayList(); // LISTA PYTAŃ DO ZAZNACZONEGO TESTU
+    private static ObjectProperty<TestFxModel> question = new SimpleObjectProperty<>(); // ZAZNACZONE PYTANIE
     private static QuestionDao questionDao = new QuestionDao();
 
     private QuestionDataModel() {}
