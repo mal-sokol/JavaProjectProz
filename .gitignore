@@ -1,9 +1,4 @@
 .idea/
 target/
-<<<<<<< HEAD
-JavaProjectProz.iml
-TestSystemDb.trace.db
-=======
 *.db
 *.iml
->>>>>>> dynovzy-master
