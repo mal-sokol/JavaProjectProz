@@ -28,7 +28,6 @@ public class CategoryDataModel
     }
     public static void fetchDataFromDataBase() throws ApplicationException
     {
-        CategoryDao categoryDao = new CategoryDao();
         List<Category> categories = categoryDao.queryForAll(Category.class);
         populateCategories(categories);
     }

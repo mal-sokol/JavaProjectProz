@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,396 +12,417 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.AddTestDialogController">
-   <children>
-      <ScrollPane layoutX="16.0" layoutY="14.0" prefHeight="370.0" prefWidth="570.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-         <content>
-            <Pane prefWidth="580.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" layoutX="-14.0" prefWidth="590.0" spacing="25.0">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Create your own test!">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="Test name">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font></Label>
-                              <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="Question 1">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="A)">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                              <CheckBox mnemonicParsing="false" text="Correct">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="B)">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                              <CheckBox mnemonicParsing="false" text="Correct">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children>
-                        </HBox>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="C)">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                              <CheckBox mnemonicParsing="false" text="Correct">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="TOP_CENTER" spacing="7.0">
-                           <children>
-                              <Label text="D)">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                              <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Correct">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
-                              </CheckBox>
-                           </children></HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="Question 2">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="A)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="B)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="C)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                             <VBox.margin>
-                                 <Insets />
-                             </VBox.margin>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="D)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children></HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="Question 3">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="A)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="B)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="C)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                             <VBox.margin>
-                                 <Insets />
-                             </VBox.margin>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="D)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children></HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="Question 4">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="A)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="B)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="C)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                             <VBox.margin>
-                                 <Insets />
-                             </VBox.margin>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="D)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children></HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="Question 5">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="430.0" />
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="A)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="B)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="C)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children>
-                             <VBox.margin>
-                                 <Insets />
-                             </VBox.margin>
-                         </HBox>
-                         <HBox alignment="TOP_CENTER" spacing="7.0">
-                             <children>
-                                 <Label text="D)">
-                                     <font>
-                                         <Font size="16.0" />
-                                     </font>
-                                 </Label>
-                                 <TextField maxWidth="-Infinity" prefWidth="400.0" />
-                                 <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Correct">
-                                     <HBox.margin>
-                                         <Insets left="20.0" top="3.0" />
-                                     </HBox.margin>
-                                 </CheckBox>
-                             </children></HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-         </content>
-      </ScrollPane>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.AddTestDialogController">
+    <children>
+        <ScrollPane layoutX="16.0" layoutY="14.0" prefHeight="370.0" prefWidth="570.0" AnchorPane.bottomAnchor="5.0"
+                    AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <content>
+                <Pane prefWidth="580.0">
+                    <children>
+                        <VBox alignment="TOP_CENTER" layoutX="-14.0" prefWidth="590.0" spacing="25.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" text="Create your own test!">
+                                    <font>
+                                        <Font size="20.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" top="10.0"/>
+                                    </VBox.margin>
+                                </Label>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Test name">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="testNameTextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Question 1">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q1TextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="A)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q1a1TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q1a1CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="B)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q1a2TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q1a2CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="C)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q1a3TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q1a3CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="D)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q1a4TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q1a4CheckBox" alignment="CENTER" contentDisplay="CENTER"
+                                                  mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Question 2">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q2TextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="A)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q2a1TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q2a1CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="B)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q2a2TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q2a2CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="C)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q2a3TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q2a3CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="D)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q2a4TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q2a4CheckBox" alignment="CENTER" contentDisplay="CENTER"
+                                                  mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Question 3">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q3TextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="A)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q3a1TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q3a1CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="B)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q3a2TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q3a2CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="C)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q3a3TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q3a3CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="D)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q3a4TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q3a4CheckBox" alignment="CENTER" contentDisplay="CENTER"
+                                                  mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Question 4">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q4TextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="A)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q4a1TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q4a1CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="B)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q4a2TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q4a2CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="C)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q4a3TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q4a3CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="D)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q4a4TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q4a4CheckBox" alignment="CENTER" contentDisplay="CENTER"
+                                                  mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="Question 5">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q5TextField" maxWidth="-Infinity" prefWidth="430.0"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="A)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q5a1TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q5a1CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="B)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q5a2TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q5a2CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="C)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q5a3TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q5a3CheckBox" mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="7.0">
+                                    <children>
+                                        <Label text="D)">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="q5a4TextField" maxWidth="-Infinity" prefWidth="400.0"/>
+                                        <CheckBox fx:id="q5a4CheckBox" alignment="CENTER" contentDisplay="CENTER"
+                                                  mnemonicParsing="false" text="Correct">
+                                            <HBox.margin>
+                                                <Insets left="20.0" top="3.0"/>
+                                            </HBox.margin>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="TOP_CENTER" spacing="40.0">
+                                    <children>
+                                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveTestInDataBase"
+                                                text="Save"/>
+                                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#closeDialog"
+                                                text="Cancel"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </Pane>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>
