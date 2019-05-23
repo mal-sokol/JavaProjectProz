@@ -332,31 +332,31 @@ public class PrepareTestDataBase
         answerDao.createOrUpdate(l4);
 
         User u1 = new User();
-        u1.setUsername("DavidLee");
+        u1.setUsername("David");
         u1.setPassword("david");
         u1.setTeacher(false);
         userDao.createOrUpdate(u1);
 
         User u2 = new User();
-        u2.setUsername("KathrinJones");
+        u2.setUsername("Kathrine");
         u2.setPassword("Kath");
         u2.setTeacher(true);
         userDao.createOrUpdate(u2);
 
         User u3 = new User();
-        u3.setUsername("JosephMouz");
-        u3.setPassword("pass");
+        u3.setUsername("Joseph");
+        u3.setPassword("jo");
         u3.setTeacher(false);
         userDao.createOrUpdate(u3);
 
         User u4 = new User();
-        u4.setUsername("LukePlub");
-        u4.setPassword("lukens");
+        u4.setUsername("Luke");
+        u4.setPassword("luke");
         u4.setTeacher(false);
         userDao.createOrUpdate(u4);
 
         User u5 = new User();
-        u5.setUsername("LucyUhm");
+        u5.setUsername("Lucy");
         u5.setPassword("lucy");
         u5.setTeacher(false);
         userDao.createOrUpdate(u5);
@@ -505,7 +505,7 @@ public class PrepareTestDataBase
 
         Question q1ch2 = new Question();
         q1ch2.setQuestion("Which one names two categories we divide all chemical compounds into?");
-        q1ch2.setTestId(chT1);
+        q1ch2.setTestId(chT2);
         questionDao.createOrUpdate(q1ch2);
         Answer a1q1ch2 = new Answer();
         Answer a2q1ch2 = new Answer();
@@ -530,7 +530,7 @@ public class PrepareTestDataBase
 
         Question q2ch2 = new Question();
         q2ch2.setQuestion("If a saturated hydrocarbon has n carbon atoms, then it must also have:");
-        q2ch2.setTestId(chT1);
+        q2ch2.setTestId(chT2);
         questionDao.createOrUpdate(q2ch2);
         Answer a1q2ch2 = new Answer();
         Answer a2q2ch2 = new Answer();
@@ -555,7 +555,7 @@ public class PrepareTestDataBase
 
         Question q3ch2 = new Question();
         q3ch2.setQuestion("Which one names saturated hydrocarbons?");
-        q3ch2.setTestId(chT1);
+        q3ch2.setTestId(chT2);
         questionDao.createOrUpdate(q3ch2);
         Answer a1q3ch2 = new Answer();
         Answer a2q3ch2 = new Answer();
@@ -580,7 +580,7 @@ public class PrepareTestDataBase
 
         Question q4ch2 = new Question();
         q4ch2.setQuestion("Which compound belongs to alkanes?");
-        q4ch2.setTestId(chT1);
+        q4ch2.setTestId(chT2);
         questionDao.createOrUpdate(q4ch2);
         Answer a1q4ch2 = new Answer();
         Answer a2q4ch2 = new Answer();
@@ -605,7 +605,7 @@ public class PrepareTestDataBase
 
         Question q5ch2 = new Question();
         q5ch2.setQuestion("Which one is the molecular formula of hexane?");
-        q5ch2.setTestId(chT1);
+        q5ch2.setTestId(chT2);
         questionDao.createOrUpdate(q5ch2);
         Answer a1q5ch2 = new Answer();
         Answer a2q5ch2 = new Answer();
@@ -688,7 +688,7 @@ public class PrepareTestDataBase
 
         Question q3ch3 = new Question();
         q3ch3.setQuestion("Which element does not belong to the noble gases?");
-        q3ch3.setTestId(chT1);
+        q3ch3.setTestId(chT3);
         questionDao.createOrUpdate(q3ch3);
         Answer a1q3ch3 = new Answer();
         Answer a2q3ch3 = new Answer();
@@ -711,9 +711,34 @@ public class PrepareTestDataBase
         answerDao.createOrUpdate(a3q3ch3);
         answerDao.createOrUpdate(a4q3ch3);
 
+        Question q4ch3 = new Question();
+        q4ch3.setQuestion("H is the symbol of element named:");
+        q4ch3.setTestId(chT3);
+        questionDao.createOrUpdate(q4ch3);
+        Answer a1q4ch3 = new Answer();
+        Answer a2q4ch3 = new Answer();
+        Answer a3q4ch3 = new Answer();
+        Answer a4q4ch3 = new Answer();
+        a1q4ch3.setCorrect(false);
+        a2q4ch3.setCorrect(false);
+        a3q4ch3.setCorrect(false);
+        a4q4ch3.setCorrect(true);
+        a1q4ch3.setQuestionId(q4ch3);
+        a2q4ch3.setQuestionId(q4ch3);
+        a3q4ch3.setQuestionId(q4ch3);
+        a4q4ch3.setQuestionId(q4ch3);
+        a1q4ch3.setAnswer("Xenon");
+        a2q4ch3.setAnswer("Radon");
+        a3q4ch3.setAnswer("Argon");
+        a4q4ch3.setAnswer("Hydrogen");
+        answerDao.createOrUpdate(a1q4ch3);
+        answerDao.createOrUpdate(a2q4ch3);
+        answerDao.createOrUpdate(a3q4ch3);
+        answerDao.createOrUpdate(a4q4ch3);
+
         Question q5ch3 = new Question();
         q5ch3.setQuestion("Which one is the symbol of silver");
-        q5ch3.setTestId(chT1);
+        q5ch3.setTestId(chT3);
         questionDao.createOrUpdate(q5ch3);
         Answer a1q5ch3 = new Answer();
         Answer a2q5ch3 = new Answer();
@@ -748,8 +773,8 @@ public class PrepareTestDataBase
         Result rch2 = new Result();
         rch2.setDate(new Date());
         rch2.setScore(4);
-        rch2.setUserId(u2);
-        rch2.setTestId(chT1);
+        rch2.setUserId(u1);
+        rch2.setTestId(chT2);
         resultDao.createOrUpdate(rch2);
 
         Result rch3 = new Result();
@@ -777,13 +802,13 @@ public class PrepareTestDataBase
         rch6.setDate(new Date());
         rch6.setScore(5);
         rch6.setUserId(u1);
-        rch6.setTestId(chT2);
+        rch6.setTestId(chT3);
         resultDao.createOrUpdate(rch6);
 
         Result rch7 = new Result();
         rch7.setDate(new Date());
         rch7.setScore(1);
-        rch7.setUserId(u2);
+        rch7.setUserId(u1);
         rch7.setTestId(chT2);
         resultDao.createOrUpdate(rch7);
 
@@ -818,7 +843,7 @@ public class PrepareTestDataBase
         Result rch12 = new Result();
         rch12.setDate(new Date());
         rch12.setScore(4);
-        rch12.setUserId(u2);
+        rch12.setUserId(u1);
         rch12.setTestId(chT3);
         resultDao.createOrUpdate(rch12);
 
@@ -854,7 +879,7 @@ public class PrepareTestDataBase
 
         Question q1l1 = new Question();
         q1l1.setQuestion("\"Frankenstein\" was written by:");
-        q1l1.setTestId(chT1);
+        q1l1.setTestId(lT1);
         questionDao.createOrUpdate(q1l1);
         Answer a1q1l1 = new Answer();
         Answer a2q1l1 = new Answer();
@@ -879,7 +904,7 @@ public class PrepareTestDataBase
 
         Question q2l1 = new Question();
         q2l1.setQuestion("Which book wasn't written by William Shakespeare?");
-        q2l1.setTestId(chT1);
+        q2l1.setTestId(lT1);
         questionDao.createOrUpdate(q2l1);
         Answer a1q2l1 = new Answer();
         Answer a2q2l1 = new Answer();
@@ -904,7 +929,7 @@ public class PrepareTestDataBase
 
         Question q3l1 = new Question();
         q3l1.setQuestion("\"The Odyssey\" was written by:");
-        q3l1.setTestId(chT1);
+        q3l1.setTestId(lT1);
         questionDao.createOrUpdate(q3l1);
         Answer a1q3l1 = new Answer();
         Answer a2q3l1 = new Answer();
@@ -929,7 +954,7 @@ public class PrepareTestDataBase
 
         Question q4l1 = new Question();
         q4l1.setQuestion("Who wrote \"Don Quixote\"?");
-        q4l1.setTestId(chT1);
+        q4l1.setTestId(lT1);
         questionDao.createOrUpdate(q4l1);
         Answer a1q4l1 = new Answer();
         Answer a2q4l1 = new Answer();
@@ -954,7 +979,7 @@ public class PrepareTestDataBase
 
         Question q5l1 = new Question();
         q5l1.setQuestion("\"Pride and Prejudice\" was written by:");
-        q5l1.setTestId(chT1);
+        q5l1.setTestId(lT1);
         questionDao.createOrUpdate(q5l1);
         Answer a1q5l1 = new Answer();
         Answer a2q5l1 = new Answer();
