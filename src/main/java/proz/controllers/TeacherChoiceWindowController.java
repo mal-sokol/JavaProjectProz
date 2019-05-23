@@ -296,9 +296,8 @@ public class TeacherChoiceWindowController
     {
         if(result.isPresent() && result.get() == ButtonType.OK)
         {
-            testNameTable.getItems().clear();
             try {
-                TestDataModel.deleteTestById(selectedTest.getTestId());
+                TestDataModel.deleteTestFromDb(selectedTest);
             } catch (ApplicationException e) {
                 DialogsUtils.errorDialog(e.getMessage());
             }

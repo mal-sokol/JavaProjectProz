@@ -51,8 +51,7 @@ public class TestDao extends CommonDao
     public void deleteTestsFromCategory(int categoryId) throws ApplicationException
     {
         List<Test> toDelete;
-        try
-        {
+        try {
             QueryBuilder<Test, Object> queryBuilder = getQueryBuilder(Test.class);
             toDelete = queryBuilder.where().eq("CATEGORY_ID", categoryId).query();
             if(!toDelete.isEmpty()) {
@@ -62,19 +61,12 @@ public class TestDao extends CommonDao
                     delete(test);
                 }
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new ApplicationException("Delete tests from category error");
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 this.connectionSource.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 throw new ApplicationException("Close connection error when deleting tests from category");
             }
         }
