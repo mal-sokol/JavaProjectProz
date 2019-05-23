@@ -15,7 +15,6 @@ import java.util.List;
 
 public class TestDataModel
 {
-    private static ObjectProperty<CategoryFxModel> parentCategory = new SimpleObjectProperty<>();
     private static ObservableList<TestFxModel> tests = FXCollections.observableArrayList(); // LISTA TESTÓW Z DANEJ KATEGORII
     private static ObjectProperty<TestFxModel> test = new SimpleObjectProperty<>(); // ZAZNACZONY TEST
     private static TestDao testDao = new TestDao();
@@ -44,13 +43,13 @@ public class TestDataModel
         tests.clear();
     }
 
-    public static void deleteTestById(int testId) throws ApplicationException
+    public static void deleteTest(TestFxModel test) throws ApplicationException
     {
         TestDao testDao = new TestDao(); // nowy dao
         QuestionDao questionDao = new QuestionDao();
-        questionDao.deleteQuestionsFromTest(testId);
-        testDao.deleteById(Test.class, testId); //usuniecie zaznaczonej odpowiedzi
-        getTestsFromCategory(parentCategory.get().getCategoryId());
+        questionDao.deleteQuestionsFromTest(test.getTestId());
+        testDao.deleteById(Test.class, test.getTestId()); //usuniecie zaznaczonej odpowiedzi
+        tests.remove(test);
         // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
 
@@ -91,17 +90,6 @@ public class TestDataModel
         TestDataModel.test.set(test);
     }
 
-    public static CategoryFxModel getParentCategory() {
-        return parentCategory.get();
-    }
-
-    public static ObjectProperty<CategoryFxModel> parentCategoryProperty() {
-        return parentCategory;
-    }
-
-    public static void setParentCategory(CategoryFxModel parentCategory) {
-        TestDataModel.parentCategory.set(parentCategory);
-    }
 
     public static TestDao getTestDao()
     {

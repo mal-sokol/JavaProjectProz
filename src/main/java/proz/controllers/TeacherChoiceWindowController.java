@@ -62,7 +62,7 @@ public class TeacherChoiceWindowController
             if (category != null)
             {
                 try {
-                    TestDataModel.setParentCategory(category);
+//                    TestDataModel.setParentCategory(category);
                     TestDataModel.getTestsFromCategory(category.getCategoryId());
                 } catch (Exception e) {
                     DialogsUtils.errorDialog(e.getMessage());
@@ -297,7 +297,7 @@ public class TeacherChoiceWindowController
         if(result.isPresent() && result.get() == ButtonType.OK)
         {
             try {
-                TestDataModel.deleteTestFromDb(selectedTest);
+                TestDataModel.deleteTest(selectedTest);
             } catch (ApplicationException e) {
                 DialogsUtils.errorDialog(e.getMessage());
             }
