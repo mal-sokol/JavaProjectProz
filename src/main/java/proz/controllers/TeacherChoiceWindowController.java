@@ -3,8 +3,6 @@ package proz.controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
@@ -12,14 +10,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import proz.models.*;
 import proz.utils.DialogsUtils;
 import proz.utils.FxmlUtils;
 import proz.utils.exceptions.ApplicationException;
 
-import java.io.IOException;
 import java.util.Optional;
 
 public class TeacherChoiceWindowController
@@ -188,39 +183,39 @@ public class TeacherChoiceWindowController
     //TODO: dodawanie bezpośrednio do bazy danych przez dialog ktory trzeba jeszcze stworzyć, nastepnie usuniecie zawartosci
     // z test table i ponowne wczytanie jej z bazy danych albo aktualizacja zawartości w zalezności od tego co prostsze
     @FXML
-    private void addTest()
-    {
-        if(categoryTable.getSelectionModel().selectedItemProperty().isNotNull().get())
-        {
-            FXMLLoader loader = FxmlUtils.getLoader("/fxmlFiles/AddTestDialog.fxml");
-            Scene scene = null;
-            try {
-                scene = new Scene(loader.load());
-            } catch (IOException e) {
-                DialogsUtils.errorDialog(e.getMessage());
-            }
-            AddTestDialogController controller = loader.getController();
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-            if(!testNameTable.getItems().isEmpty())
-                testNameTable.getSelectionModel().selectLast();
-//            Optional<String> newTest = DialogsUtils.addTestDialog();
-//            if(newTest.isPresent() && !newTest.get().trim().isEmpty())
-//            {
-//
-////                categoryTable.getSelectionModel().selectedItemProperty().get().getListOfTests().add(
-////                        new TestFxModel(newTest.get(), 4));
-//                //testNameTable.getItems().add(new TestFxModel(newTest.get(), 4));
-//                //testNameTable.setItems(categoryTable.getSelectionModel().selectedItemProperty().get().getListOfTests());
+//    private void addTest()
+//    {
+//        if(categoryTable.getSelectionModel().selectedItemProperty().isNotNull().get())
+//        {
+//            FXMLLoader loader = FxmlUtils.getLoader("/fxmlFiles/AddTestDialog.fxml");
+//            Scene scene = null;
+//            try {
+//                scene = new Scene(loader.load());
+//            } catch (IOException e) {
+//                DialogsUtils.errorDialog(e.getMessage());
 //            }
-        }
-        else
-        {
-            DialogsUtils.categoryNotSelectedDialog();
-        }
-    }
+//            AddQuestionDialogController controller = loader.getController();
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.showAndWait();
+//            if(!testNameTable.getItems().isEmpty())
+//                testNameTable.getSelectionModel().selectLast();
+////            Optional<String> newTest = DialogsUtils.addTestDialog();
+////            if(newTest.isPresent() && !newTest.get().trim().isEmpty())
+////            {
+////
+//////                categoryTable.getSelectionModel().selectedItemProperty().get().getListOfTests().add(
+//////                        new TestFxModel(newTest.get(), 4));
+////                //testNameTable.getItems().add(new TestFxModel(newTest.get(), 4));
+////                //testNameTable.setItems(categoryTable.getSelectionModel().selectedItemProperty().get().getListOfTests());
+////            }
+//        }
+//        else
+//        {
+//            DialogsUtils.categoryNotSelectedDialog();
+//        }
+//    }
 
     private void editCategoryWhenDialogFilled(CategoryFxModel selectedCategory, Optional<String> editedCategory) throws ApplicationException
     {
