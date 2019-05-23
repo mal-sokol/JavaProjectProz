@@ -69,10 +69,19 @@ public class TeacherChoiceWindowController
         });
     }
 
-    private void storeSelectedTest()
+    private void loadQuestionsOnTestPicked()
     {
-        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                TestDataModel.setTest(newValue));
+        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            TestDataModel.setTest(newValue);
+            if(TestDataModel.getTest() != null)
+            {
+                try {
+                    QuestionDataModel.getQuestionsFromTest(TestDataModel.getTest().getTestId());
+                } catch (ApplicationException e) {
+                    DialogsUtils.errorDialog(e.getMessage());
+                }
+            }
+        });
     }
 
     private void fetchCategoryDataFromDataBase()
@@ -91,7 +100,7 @@ public class TeacherChoiceWindowController
         categoryTable.setItems(CategoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
-        storeSelectedTest();
+        loadQuestionsOnTestPicked();
         testNameTable.setItems(TestDataModel.getTests());
         disableContextMenusOptionsWhenCannotBeUsed();
         if(!categoryTable.getItems().isEmpty())

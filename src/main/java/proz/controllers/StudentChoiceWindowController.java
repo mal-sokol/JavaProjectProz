@@ -39,17 +39,26 @@ public class StudentChoiceWindowController
             {
                 try {
                     TestDataModel.getTestsFromCategory(CategoryDataModel.getCategory().getCategoryId());
-                } catch (Exception e) {
+                } catch (ApplicationException e) {
                     DialogsUtils.errorDialog(e.getMessage());
                 }
             }
         });
     }
 
-    private void storeSelectedTest()
+    private void loadQuestionsOnTestPicked()
     {
-        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                TestDataModel.setTest(newValue));
+        testNameTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            TestDataModel.setTest(newValue);
+            if(TestDataModel.getTest() != null)
+            {
+                try {
+                    QuestionDataModel.getQuestionsFromTest(TestDataModel.getTest().getTestId());
+                } catch (ApplicationException e) {
+                    DialogsUtils.errorDialog(e.getMessage());
+                }
+            }
+        });
     }
 
     private void fetchCategoryDataFromDataBase()
@@ -68,9 +77,10 @@ public class StudentChoiceWindowController
         categoryTable.setItems(CategoryDataModel.getCategories());
         disableBeginButtonUntilTestChosen();
         showAvailableTestsOnCategoryPicked();
-        storeSelectedTest();
-        categoryTable.getSelectionModel().selectFirst();
+        loadQuestionsOnTestPicked();
         testNameTable.setItems(TestDataModel.getTests());
+            if(!categoryTable.getItems().isEmpty())
+        categoryTable.getSelectionModel().selectFirst();
     }
 
     @FXML
