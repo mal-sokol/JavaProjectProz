@@ -35,7 +35,7 @@ public class AddQuestionDialogController
     private Button cancelButton;
 
 
-    private void disableSaveButtonUntilWholeTestFilled()
+    private void disableSaveButtonUntilAllFieldsFilled()
     {
         saveButton.disableProperty().bind(questionTextField.textProperty().isEmpty().or(a1TextField.textProperty().isEmpty())
                 .or(a2TextField.textProperty().isEmpty()).or(a3TextField.textProperty().isEmpty())
@@ -45,8 +45,7 @@ public class AddQuestionDialogController
     @FXML
     private void initialize()
     {
-        disableSaveButtonUntilWholeTestFilled();
-        cancelButton.setCancelButton(true);
+        disableSaveButtonUntilAllFieldsFilled();
     }
     //TODO: zapis 4 na raz
     private void saveAnswers(Question question, String a1, boolean c1, String a2, boolean c2,

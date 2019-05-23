@@ -11,6 +11,11 @@ public class Category implements BaseModel
 
     public Category() {}
 
+    public Category(String name)
+    {
+        this.name = name;
+    }
+
     @DatabaseField(generatedId = true, columnName = "CATEGORY_ID")
     private int categoryId;
 

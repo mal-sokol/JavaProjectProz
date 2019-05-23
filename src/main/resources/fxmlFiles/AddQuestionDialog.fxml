@@ -6,18 +6,16 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0"
-            prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="proz.controllers.AddQuestionDialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.AddQuestionDialogController">
     <children>
-        <ScrollPane prefHeight="340.0" prefWidth="550.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                    AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <ScrollPane prefHeight="340.0" prefWidth="550.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
             <content>
                 <Pane prefWidth="530.0">
                     <children>
@@ -27,35 +25,38 @@
                                     <children>
                                         <Label text="Question">
                                             <font>
-                                                <Font size="22.0"/>
+                                                <Font size="22.0" />
                                             </font>
                                         </Label>
                                         <TextField fx:id="questionTextField" prefWidth="400.0">
                                             <font>
-                                                <Font size="16.0"/>
+                                                <Font size="16.0" />
                                             </font>
                                         </TextField>
                                     </children>
                                     <VBox.margin>
-                                        <Insets top="20.0"/>
+                                        <Insets top="20.0" />
                                     </VBox.margin>
                                 </HBox>
                                 <HBox alignment="TOP_CENTER" spacing="7.0">
                                     <children>
                                         <Label text="A)">
                                             <font>
-                                                <Font size="22.0"/>
+                                                <Font size="22.0" />
                                             </font>
                                         </Label>
                                         <TextField fx:id="a1TextField" prefWidth="400.0">
                                             <font>
-                                                <Font size="16.0"/>
+                                                <Font size="16.0" />
                                             </font>
                                         </TextField>
                                         <RadioButton fx:id="a1RadioButton" mnemonicParsing="false" text="Correct">
                                             <padding>
-                                                <Insets left="15.0" top="8.0"/>
+                                                <Insets left="15.0" top="8.0" />
                                             </padding>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="group" />
+                                 </toggleGroup>
                                         </RadioButton>
                                     </children>
                                 </HBox>
@@ -63,17 +64,17 @@
                                     <children>
                                         <Label text="B)">
                                             <font>
-                                                <Font size="22.0"/>
+                                                <Font size="22.0" />
                                             </font>
                                         </Label>
                                         <TextField fx:id="a2TextField" prefWidth="400.0">
                                             <font>
-                                                <Font size="16.0"/>
+                                                <Font size="16.0" />
                                             </font>
                                         </TextField>
-                                        <RadioButton fx:id="a2RadioButton" mnemonicParsing="false" text="Correct">
+                                        <RadioButton fx:id="a2RadioButton" mnemonicParsing="false" text="Correct" toggleGroup="$group">
                                             <padding>
-                                                <Insets left="15.0" top="8.0"/>
+                                                <Insets left="15.0" top="8.0" />
                                             </padding>
                                         </RadioButton>
                                     </children>
@@ -82,17 +83,17 @@
                                     <children>
                                         <Label text="C)">
                                             <font>
-                                                <Font size="22.0"/>
+                                                <Font size="22.0" />
                                             </font>
                                         </Label>
                                         <TextField fx:id="a3TextField" prefWidth="400.0">
                                             <font>
-                                                <Font size="16.0"/>
+                                                <Font size="16.0" />
                                             </font>
                                         </TextField>
-                                        <RadioButton fx:id="a3RadioButton" mnemonicParsing="false" text="Correct">
+                                        <RadioButton fx:id="a3RadioButton" mnemonicParsing="false" text="Correct" toggleGroup="$group">
                                             <padding>
-                                                <Insets left="15.0" top="8.0"/>
+                                                <Insets left="15.0" top="8.0" />
                                             </padding>
                                         </RadioButton>
                                     </children>
@@ -101,31 +102,28 @@
                                     <children>
                                         <Label text="D)">
                                             <font>
-                                                <Font size="22.0"/>
+                                                <Font size="22.0" />
                                             </font>
                                         </Label>
                                         <TextField fx:id="a4TextField" prefWidth="400.0">
                                             <font>
-                                                <Font size="16.0"/>
+                                                <Font size="16.0" />
                                             </font>
                                         </TextField>
-                                        <RadioButton fx:id="a4RadioButton" mnemonicParsing="false" text="Correct">
+                                        <RadioButton fx:id="a4RadioButton" mnemonicParsing="false" text="Correct" toggleGroup="$group">
                                             <padding>
-                                                <Insets left="15.0" top="8.0"/>
+                                                <Insets left="15.0" top="8.0" />
                                             </padding>
                                         </RadioButton>
                                     </children>
                                 </HBox>
                                 <HBox alignment="TOP_CENTER" spacing="80.0">
                                     <children>
-                                        <Button fx:id="saveButton" mnemonicParsing="false"
-                                                onAction="#saveQuestionAndAnswers" prefHeight="35.0" prefWidth="70.0"
-                                                text="Save"/>
-                                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelSaving"
-                                                prefHeight="35.0" prefWidth="70.0" text="Cancel"/>
+                                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveQuestionAndAnswers" prefHeight="35.0" prefWidth="70.0" text="Save" />
+                                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelSaving" prefHeight="35.0" prefWidth="70.0" text="Cancel" />
                                     </children>
                                     <padding>
-                                        <Insets bottom="20.0"/>
+                                        <Insets bottom="20.0" />
                                     </padding>
                                 </HBox>
                             </children>

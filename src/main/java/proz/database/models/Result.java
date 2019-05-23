@@ -11,6 +11,14 @@ public class Result implements BaseModel
 {
     public Result() {}
 
+    public Result(int score, Test test, User user)
+    {
+        this.score = score;
+        this.testId = test;
+        this.userId = user;
+        this.date = new Date();
+    }
+
     @DatabaseField(generatedId = true, columnName = "RESULT_ID")
     private int resultId;
 

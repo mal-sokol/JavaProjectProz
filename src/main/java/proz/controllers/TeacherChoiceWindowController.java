@@ -182,12 +182,12 @@ public class TeacherChoiceWindowController
 
     //TODO: dodawanie bezpośrednio do bazy danych przez dialog ktory trzeba jeszcze stworzyć, nastepnie usuniecie zawartosci
     // z test table i ponowne wczytanie jej z bazy danych albo aktualizacja zawartości w zalezności od tego co prostsze
-    @FXML
+//    @FXML
 //    private void addTest()
 //    {
 //        if(categoryTable.getSelectionModel().selectedItemProperty().isNotNull().get())
 //        {
-//            FXMLLoader loader = FxmlUtils.getLoader("/fxmlFiles/AddTestDialog.fxml");
+//            FXMLLoader loader = FxmlUtils.fxmlLoader("/fxmlFiles/AddQuestionDialog.fxml");
 //            Scene scene = null;
 //            try {
 //                scene = new Scene(loader.load());
