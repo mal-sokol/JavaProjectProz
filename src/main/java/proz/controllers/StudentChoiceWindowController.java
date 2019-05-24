@@ -1,6 +1,7 @@
 package proz.controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -125,5 +126,10 @@ public class StudentChoiceWindowController
         {
             ((Button) mouseEvent.getSource()).setEffect(null);
         }
+    }
+
+    @FXML
+    private void beginTest(ActionEvent event)
+    {
     }
 }

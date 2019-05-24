@@ -35,15 +35,16 @@ public class TestDataModel
         populateTests(tests);
     }
 
-    public static Test saveTestInDataBase(String testName, Category category) throws ApplicationException
+    public static void saveTestInDataBase(String testName, Category category) throws ApplicationException
     {
-        Test newTest = new Test();
-        newTest.setName(testName);
-        newTest.setCategory(category);
-        testDao.createOrUpdate(newTest);
-        TestDataModel.getTestDao().refresh(newTest);
-        getTestsFromCategory(category.getCategoryId());
-        return newTest;
+        Test newTest = new Test(testName, category);
+        testDao.createOrUpdateAndRefresh(newTest);
+        tests.add(TestConverter.testToTestFx(newTest));
+    }
+
+    public static void updateTestInDataBase() throws ApplicationException
+    {
+        testDao.createOrUpdate(TestConverter.testFxToTest(TestDataModel.getTest()));
     }
 
     public static ObservableList<TestFxModel> getTests()
