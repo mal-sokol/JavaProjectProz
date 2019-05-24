@@ -9,6 +9,13 @@ public class User implements BaseModel
 {
     public User() {}
 
+    public User(String username, String password, boolean isTeacher)
+    {
+        this.username = username;
+        this.password = password;
+        this.isTeacher = isTeacher;
+    }
+
     @DatabaseField(generatedId = true, columnName = "USER_ID")
     private int userId;
 

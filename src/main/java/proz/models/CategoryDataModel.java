@@ -42,17 +42,14 @@ public class CategoryDataModel
 
     public static void saveCategoryInDataBase(String categoryName) throws ApplicationException
     {
-        Category newCategory = new Category();
-        newCategory.setName(categoryName);
-        categoryDao.createOrUpdate(newCategory);
-        fetchDataFromDataBase();
+        Category newCategory = new Category(categoryName);
+        categoryDao.createOrUpdateAndRefresh(newCategory);
+        categories.add(CategoryConverter.categoryToCategoryFx(newCategory));
     }
 
-    public static void updateCategoryInDataBase(int categoryId, String newName) throws ApplicationException
+    public static void updateCategoryInDataBase() throws ApplicationException
     {
-        Category updatedCategory = categoryDao.findById(Category.class, categoryId);
-        updatedCategory.setName(newName);
-        categoryDao.createOrUpdate(updatedCategory);
+        categoryDao.createOrUpdate(CategoryConverter.categoryFxToCategory(CategoryDataModel.getCategory()));
     }
 
     public static ObservableList<CategoryFxModel> getCategories()

@@ -8,6 +8,12 @@ public class Question implements BaseModel
 {
     public Question() {}
 
+    public Question(String question, Test test)
+    {
+        this.question = question;
+        this.testId = test;
+    }
+
     @DatabaseField(generatedId = true, columnName = "QUESTION_ID")
     private int questionId;
 

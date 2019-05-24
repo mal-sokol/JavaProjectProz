@@ -8,6 +8,12 @@ public class Test implements BaseModel
 {
     public Test() {}
 
+    public Test(String name, Category category)
+    {
+        this.name = name;
+        this.category = category;
+    }
+
     @DatabaseField(generatedId = true, columnName = "TEST_ID")
     private int testId;
 

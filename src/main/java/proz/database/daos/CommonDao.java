@@ -40,6 +40,20 @@ public abstract class CommonDao
         }
     }
 
+    public <T extends BaseModel, I> void createOrUpdateAndRefresh(BaseModel baseModel) throws ApplicationException
+    {
+        Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
+        try {
+            dao.createOrUpdate((T) baseModel);
+            dao.refresh((T) baseModel);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
+            throw new ApplicationException("Update error");
+        } finally {
+            this.closeDbConnection();
+        }
+    }
+
     public <T extends BaseModel, I> void create(Collection<T> collection) throws ApplicationException
     {
         Dao<T, I> dao = getDao((Class<T>) collection.iterator().next().getClass());
