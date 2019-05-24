@@ -9,6 +9,13 @@ public class Answer implements BaseModel
 {
     public Answer() {}
 
+    public Answer(String answer, boolean isCorrect, Question question)
+    {
+        this.answer = answer;
+        this.isCorrect = isCorrect;
+        this.questionId = question;
+    }
+
     @DatabaseField(generatedId = true, columnName = "ANSWER_ID")
     private int answerId;
 

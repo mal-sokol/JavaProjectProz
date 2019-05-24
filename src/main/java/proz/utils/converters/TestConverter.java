@@ -28,6 +28,7 @@ public class TestConverter
     public static Test testFxToTest(TestFxModel fxModel)
     {
         Test test = new Test();
+        test.setName(fxModel.getTestName());
         test.setTestId(fxModel.getTestId());
         test.setCategory(CategoryConverter.categoryFxToCategory(fxModel.getCategoryId()));
         return test;

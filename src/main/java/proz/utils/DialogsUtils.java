@@ -120,13 +120,21 @@ public class DialogsUtils
         return dialog.showAndWait();
     }
 
-    //TODO: to musi byc w nowym fxml trzeba moc dodac test razem z pytaniami i odpowiedziami, wtedy bedzie ten sam dla edycji, trzeba bedzie zmienic test model
     public static Optional<String> addTestDialog()
     {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add test");
         dialog.setHeaderText("Add new test.");
         dialog.setContentText("Please enter test name: ");
+        return dialog.showAndWait();
+    }
+
+    public static Optional<String> editTestDialog(String oldValue)
+    {
+        TextInputDialog dialog = new TextInputDialog(oldValue);
+        dialog.setTitle("Edit test");
+        dialog.setHeaderText("Edit selected test.");
+        dialog.setContentText("Please enter new test name: ");
         return dialog.showAndWait();
     }
 

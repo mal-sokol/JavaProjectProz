@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FxmlUtils
@@ -46,5 +47,18 @@ public class FxmlUtils
         FxmlUtils.changeApplicationImage(stage, pathToImage);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void createNewStageDialog(String pathToScene, String pathToImage)
+    {
+        Parent parent = FxmlUtils.fxmlLoader(pathToScene);
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.hide();
+        FxmlUtils.changeApplicationImage(stage, pathToImage);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
