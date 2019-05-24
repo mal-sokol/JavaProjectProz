@@ -337,4 +337,9 @@ public class TeacherChoiceWindowController
             deleteTestWhenOkPressed(selectedCategory, selectedTest, result);
         }
     }
+
+    @FXML
+    private void showResults(ActionEvent event)
+    {
+    }
 }

@@ -52,6 +52,11 @@
             <padding>
                 <Insets right="30.0" />
             </padding>
+         <Button mnemonicParsing="false" onAction="#showResults" prefHeight="30.0" text="Show results for test">
+            <HBox.margin>
+               <Insets bottom="10.0" top="10.0" />
+            </HBox.margin>
+         </Button>
             <Button fx:id="beginTestButton" mnemonicParsing="false" onAction="#beginTest" onMouseEntered="#highlightOnEnterButtonArea" onMouseExited="#stopHighlightingOnExitButtonArea" prefHeight="30.0" prefWidth="70.0" text="Begin test">
                 <HBox.margin>
                     <Insets bottom="10.0" top="10.0" />
