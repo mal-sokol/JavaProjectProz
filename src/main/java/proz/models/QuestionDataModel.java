@@ -31,7 +31,7 @@ public class QuestionDataModel
 
     public static void getQuestionsFromTest(int testId) throws ApplicationException
     {
-        List<Question> questions = questionDao.queryForQuestionsFromTest(questionDao, testId);
+        List<Question> questions = questionDao.queryForQuestionsFromTest(testId);
         populateQuestions(questions);
     }
 
