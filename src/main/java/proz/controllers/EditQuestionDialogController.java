@@ -54,14 +54,14 @@ public class EditQuestionDialogController
 
     private void setAnswersInDataModel()
     {
-        AnswerDataModel.getAnswers().get(0).setAnswer(a1TextField.getText());
-        AnswerDataModel.getAnswers().get(0).setIsCorrect(a1RadioButton.isSelected());
-        AnswerDataModel.getAnswers().get(1).setAnswer(a2TextField.getText());
-        AnswerDataModel.getAnswers().get(1).setIsCorrect(a2RadioButton.isSelected());
-        AnswerDataModel.getAnswers().get(2).setAnswer(a3TextField.getText());
-        AnswerDataModel.getAnswers().get(2).setIsCorrect(a3RadioButton.isSelected());
-        AnswerDataModel.getAnswers().get(3).setAnswer(a4TextField.getText());
-        AnswerDataModel.getAnswers().get(3).setIsCorrect(a4RadioButton.isSelected());
+        AnswerDataModel.getAnswersFromQuestion().get(0).setAnswer(a1TextField.getText());
+        AnswerDataModel.getAnswersFromQuestion().get(0).setIsCorrect(a1RadioButton.isSelected());
+        AnswerDataModel.getAnswersFromQuestion().get(1).setAnswer(a2TextField.getText());
+        AnswerDataModel.getAnswersFromQuestion().get(1).setIsCorrect(a2RadioButton.isSelected());
+        AnswerDataModel.getAnswersFromQuestion().get(2).setAnswer(a3TextField.getText());
+        AnswerDataModel.getAnswersFromQuestion().get(2).setIsCorrect(a3RadioButton.isSelected());
+        AnswerDataModel.getAnswersFromQuestion().get(3).setAnswer(a4TextField.getText());
+        AnswerDataModel.getAnswersFromQuestion().get(3).setIsCorrect(a4RadioButton.isSelected());
     }
 
     @FXML
@@ -91,13 +91,13 @@ public class EditQuestionDialogController
     public void setViewElementsToTheirExistingValues()
     {
         questionTextField.setText(QuestionDataModel.getQuestion().getQuestion());
-        a1TextField.setText(AnswerDataModel.getAnswers().get(0).getAnswer());
-        a1RadioButton.setSelected(AnswerDataModel.getAnswers().get(0).isIsCorrect());
-        a2TextField.setText(AnswerDataModel.getAnswers().get(1).getAnswer());
-        a2RadioButton.setSelected(AnswerDataModel.getAnswers().get(1).isIsCorrect());
-        a3TextField.setText(AnswerDataModel.getAnswers().get(2).getAnswer());
-        a3RadioButton.setSelected(AnswerDataModel.getAnswers().get(2).isIsCorrect());
-        a4TextField.setText(AnswerDataModel.getAnswers().get(3).getAnswer());
-        a4RadioButton.setSelected(AnswerDataModel.getAnswers().get(3).isIsCorrect());
+        a1TextField.setText(AnswerDataModel.getAnswersFromQuestion().get(0).getAnswer());
+        a1RadioButton.setSelected(AnswerDataModel.getAnswersFromQuestion().get(0).isIsCorrect());
+        a2TextField.setText(AnswerDataModel.getAnswersFromQuestion().get(1).getAnswer());
+        a2RadioButton.setSelected(AnswerDataModel.getAnswersFromQuestion().get(1).isIsCorrect());
+        a3TextField.setText(AnswerDataModel.getAnswersFromQuestion().get(2).getAnswer());
+        a3RadioButton.setSelected(AnswerDataModel.getAnswersFromQuestion().get(2).isIsCorrect());
+        a4TextField.setText(AnswerDataModel.getAnswersFromQuestion().get(3).getAnswer());
+        a4RadioButton.setSelected(AnswerDataModel.getAnswersFromQuestion().get(3).isIsCorrect());
     }
 }

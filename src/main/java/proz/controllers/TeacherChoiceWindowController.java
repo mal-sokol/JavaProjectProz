@@ -303,6 +303,16 @@ public class TeacherChoiceWindowController
     @FXML
     private void beginTest(ActionEvent event)
     {
+        try {
+            QuestionDataModel.getQuestionsFromTest(TestDataModel.getTest().getTestId());
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+        if(QuestionDataModel.getQuestions().size() < 5)
+            DialogsUtils.errorDialog("Test must contain at least 5 questions");
+        else
+            FxmlUtils.switchScene("/fxmlFiles/TestWindow.fxml",
+                    teacherChoicePanel, "/images/teacher.png");
     }
 
     private void deleteCategoryWhenOkPressed(CategoryFxModel selectedCategory, Optional<ButtonType> result)
