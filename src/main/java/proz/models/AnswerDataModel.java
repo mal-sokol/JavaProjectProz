@@ -5,33 +5,50 @@ import javafx.collections.ObservableList;
 import proz.database.daos.AnswerDao;
 import proz.database.models.Answer;
 import proz.database.models.Question;
+import proz.utils.converters.AnswerConverter;
 import proz.utils.exceptions.ApplicationException;
+
+import java.util.Collection;
+import java.util.List;
 
 public class AnswerDataModel
 {
     private static ObservableList<AnswerFxModel> answers = FXCollections.observableArrayList(); // LISTA ODPOWIEDZI DLA ZAZNACZONEGO PYTANIA
-   // private static ObjectProperty<AnswerFxModel> answer = new SimpleObjectProperty<>();
     private static AnswerDao answerDao = new AnswerDao();
 
     private AnswerDataModel() {}
 
     public static void saveAnswerInDataBase(String answer, boolean isCorrect, Question question) throws ApplicationException
     {
-        Answer newAnswer = new Answer();
-        newAnswer.setAnswer(answer);
-        newAnswer.setCorrect(isCorrect);
-        newAnswer.setQuestionId(question);
-        answerDao.createOrUpdate(newAnswer);
+        answerDao.createOrUpdate(new Answer(answer, isCorrect, question));
     }
 
-    private void populateAnswers()
+    public static void saveManyAnswersInDataBase(Collection<Answer> answers) throws ApplicationException
     {
-//        answers.clear();
-//        answers.forEach(answer -> {
-//            AnswerFxModel answerFx = AnswerConverter.answerToAnswerFx(answer);
-//            answers.add(answerFx);
-//        });
+        answerDao.createMany(answers);
     }
+
+    private static void populateAnswers(List<Answer> answerList)
+    {
+        answers.clear();
+        answerList.forEach(answer -> {
+            AnswerFxModel answerFx = AnswerConverter.answerToAnswerFx(answer);
+            answers.add(answerFx);
+        });
+    }
+
+    public static void getAnswersFromQuestion(int questionId) throws ApplicationException
+    {
+        List<Answer> answers = answerDao.queryForAnswersFromQuestion(answerDao, questionId);
+        populateAnswers(answers);
+    }
+
+    public static void updateAnswersInDataBase() throws ApplicationException
+    {
+        for(AnswerFxModel answer : answers)
+            answerDao.update(AnswerConverter.answerFxToAnswer(answer));
+    }
+
     public void fetchDataFromDataBase()
     {
 //        AnswerDao answerDao = new AnswerDao(); // nowy dao
@@ -47,24 +64,6 @@ public class AnswerDataModel
 //        // załozenie bedzi wywolane tylko przy usuwaniu z gory, jednej odpowiedzi nie da sie usunąc
     }
 
-    public void saveAnswerInDataBase(String answer)
-    {
-//        AnswerDao answerDao = new AnswerDao();
-//        Answer newAnswer = new Answer();
-//        answer.setAnswer(answer);
-//        answerDao.createOrUpdate(newAnswer);
-//        fetchDataFromDataBase();
-    }
-
-    public void updateAnswerInDataBase()
-    {
-//        AnswerDao answerDao = new AnswerDao();
-//        Answer updatedAnswer = answerDao.findById(Answer.class, getAnswer().getAnswerId());
-//        updatedAnswer.setAnswer(getAnswer().getAnswer());
-//        answerDao.createOrUpdate(updatedAnswer);
-//        fetchDataFromDataBase();
-    }
-
     public static ObservableList<AnswerFxModel> getAnswers()
     {
         return answers;
@@ -74,21 +73,6 @@ public class AnswerDataModel
     {
         AnswerDataModel.answers = answers;
     }
-
-//    public static AnswerFxModel getAnswer()
-//    {
-//        return answer.get();
-//    }
-//
-//    public static ObjectProperty<AnswerFxModel> answerProperty()
-//    {
-//        return answer;
-//    }
-//
-//    public static void setAnswer(AnswerFxModel answer)
-//    {
-//        AnswerDataModel.answer.set(answer);
-//    }
 
     public static AnswerDao getAnswerDao()
     {

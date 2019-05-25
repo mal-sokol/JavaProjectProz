@@ -37,12 +37,15 @@ public class QuestionDataModel
 
     public static Question saveQuestionInDataBase(String question, Test test) throws ApplicationException
     {
-        Question newQuestion = new Question();
-        newQuestion.setQuestion(question);
-        newQuestion.setTestId(test);
-        questionDao.createOrUpdate(newQuestion);
-        questionDao.refresh(newQuestion);
+        Question newQuestion = new Question(question, test);
+        questionDao.createOrUpdateAndRefresh(newQuestion);
+        questions.add(QuestionConverter.questionToQuestionFx(newQuestion));
         return newQuestion;
+    }
+
+    public static void updateQuestionInDataBase() throws ApplicationException
+    {
+        questionDao.createOrUpdate(QuestionConverter.questionFxToQuestion(getQuestion()));
     }
 
     public static QuestionDao getQuestionDao()
