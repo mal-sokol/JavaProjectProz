@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import proz.models.AnswerDataModel;
 import proz.models.QuestionDataModel;
@@ -31,6 +32,8 @@ public class EditQuestionDialogController
     @FXML
     private RadioButton a4RadioButton;
     @FXML
+    private ToggleGroup group;
+    @FXML
     private Button editButton;
     @FXML
     private Button cancelButton;
@@ -40,7 +43,7 @@ public class EditQuestionDialogController
     {
         editButton.disableProperty().bind(questionTextField.textProperty().isEmpty().or(a1TextField.textProperty().isEmpty())
                 .or(a2TextField.textProperty().isEmpty()).or(a3TextField.textProperty().isEmpty())
-                .or(a4TextField.textProperty().isEmpty()));
+                .or(a4TextField.textProperty().isEmpty()).or(group.selectedToggleProperty().isNull()));
     }
 
     @FXML

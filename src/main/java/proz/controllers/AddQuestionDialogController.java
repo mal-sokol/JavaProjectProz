@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import proz.database.models.Answer;
 import proz.database.models.Question;
@@ -38,6 +39,8 @@ public class AddQuestionDialogController
     @FXML
     private RadioButton a4RadioButton;
     @FXML
+    private ToggleGroup group;
+    @FXML
     private Button saveButton;
     @FXML
     private Button cancelButton;
@@ -47,7 +50,7 @@ public class AddQuestionDialogController
     {
         saveButton.disableProperty().bind(questionTextField.textProperty().isEmpty().or(a1TextField.textProperty().isEmpty())
                 .or(a2TextField.textProperty().isEmpty()).or(a3TextField.textProperty().isEmpty())
-                .or(a4TextField.textProperty().isEmpty()));
+                .or(a4TextField.textProperty().isEmpty()).or(group.selectedToggleProperty().isNull()));
     }
 
     @FXML
