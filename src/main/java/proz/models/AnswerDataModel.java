@@ -40,7 +40,7 @@ public class AnswerDataModel
 
     public static void getAnswersFromQuestion(int questionId) throws ApplicationException
     {
-        List<Answer> answers = answerDao.queryForAnswersFromQuestion(answerDao, questionId);
+        List<Answer> answers = answerDao.queryForAnswersFromQuestion(questionId);
         populateAnswersFromQuestion(answers);
     }
 
@@ -55,7 +55,7 @@ public class AnswerDataModel
 
     public static void getAnswersFromTest(int testId) throws ApplicationException
     {
-        List<Answer> answers = answerDao.queryForAnswersFromTest(answerDao, testId);
+        List<Answer> answers = answerDao.queryForAnswersFromTest(testId);
         populateAnswers(answers);
     }
 

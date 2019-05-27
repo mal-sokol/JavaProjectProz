@@ -14,7 +14,7 @@ public class DbManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DbManager.class);
 
-    private static final String JDBC_DRIVER_HD = "jdbc:h2:C:\\Users\\YogaC930\\Desktop\\TestSystemDb";
+    private static final String JDBC_DRIVER_HD = "jdbc:h2:./TestSystemDb.mv.db";
     private static final String USER = "admin";
     private static final String PASS = "admin";
 
