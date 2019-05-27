@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.TestWindowController">
+    <children>
+        <ScrollPane prefHeight="440.0" prefWidth="650.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <AnchorPane prefWidth="620.0">
+                    <children>
+                        <VBox layoutX="30.0" layoutY="55.0" minWidth="-Infinity" prefWidth="590.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                            <children>
+                                <HBox alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="testName" alignment="TOP_CENTER" contentDisplay="CENTER" text="TestName" underline="true">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                            <font>
+                                                <Font name="System Italic" size="25.0" />
+                                            </font>
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="41.0" prefWidth="448.0">
+                                    <children>
+                              <Label text="1.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                                        <Label fx:id="question1" prefHeight="19.0" text="Label">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </HBox.margin>
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button11" mnemonicParsing="false" prefHeight="21.0" prefWidth="436.0">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="answers1" />
+                                            </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button12" mnemonicParsing="false" prefHeight="24.0" prefWidth="448.0" toggleGroup="$answers1">
+                                            <HBox.margin>
+                                                <Insets bottom="1.0" right="1.0" top="1.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button13" mnemonicParsing="false" prefHeight="25.0" prefWidth="448.0" toggleGroup="$answers1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button14" mnemonicParsing="false" prefHeight="1.0" prefWidth="449.0" toggleGroup="$answers1">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="35.0" prefWidth="448.0">
+                                    <children>
+                              <Label text="2.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                                        <Label fx:id="question2" prefHeight="21.0" text="Label">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="448.0">
+                                    <children>
+                                        <RadioButton fx:id="button21" mnemonicParsing="false" prefHeight="25.0" prefWidth="446.0">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="answers2" />
+                                            </toggleGroup>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button22" mnemonicParsing="false" prefWidth="449.0" toggleGroup="$answers2">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="448.0">
+                                    <children>
+                                        <RadioButton fx:id="button23" mnemonicParsing="false" prefWidth="447.0" toggleGroup="$answers2">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button24" mnemonicParsing="false" prefWidth="448.0" toggleGroup="$answers2">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="35.0" prefWidth="428.0">
+                                    <children>
+                              <Label text="3.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                                        <Label fx:id="question3" prefHeight="21.0" text="Label">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button31" mnemonicParsing="false" prefHeight="21.0" prefWidth="454.0">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="answers3" />
+                                            </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button32" mnemonicParsing="false" prefHeight="21.0" prefWidth="451.0" toggleGroup="$answers3">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button33" mnemonicParsing="false" prefHeight="14.0" prefWidth="448.0" toggleGroup="$answers3">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button34" mnemonicParsing="false" prefHeight="21.0" prefWidth="448.0" toggleGroup="$answers3">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="23.0" prefWidth="508.0">
+                                    <children>
+                              <Label text="4.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                                        <Label fx:id="question4" prefHeight="21.0" text="Label">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button41" mnemonicParsing="false" prefHeight="21.0" prefWidth="450.0">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="answers4" />
+                                            </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button42" mnemonicParsing="false" prefHeight="21.0" prefWidth="464.0" toggleGroup="$answers4">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button43" mnemonicParsing="false" prefHeight="21.0" prefWidth="447.0" toggleGroup="$answers4">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button44" mnemonicParsing="false" prefHeight="21.0" prefWidth="462.0" toggleGroup="$answers4">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="35.0">
+                                    <children>
+                              <Label text="5.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                                        <Label fx:id="question5" text="Label">
+                                            <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button51" mnemonicParsing="false" prefHeight="21.0" prefWidth="452.0">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="answers5" />
+                                            </toggleGroup>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                        </RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button52" mnemonicParsing="false" prefHeight="21.0" prefWidth="453.0" toggleGroup="$answers5">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button53" mnemonicParsing="false" prefHeight="21.0" prefWidth="449.0" toggleGroup="$answers5">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="25.0" prefWidth="508.0">
+                                    <children>
+                                        <RadioButton fx:id="button54" mnemonicParsing="false" prefHeight="21.0" prefWidth="452.0" toggleGroup="$answers5">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></RadioButton>
+                                    </children>
+                                </HBox>
+                        <HBox alignment="TOP_CENTER" spacing="100.0">
+                           <children>
+                                    <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="35.0" prefWidth="60.0" text="Back" />
+                                    <Label fx:id="score" alignment="CENTER" text="Label">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" />
+                                 </padding></Label>
+                                    <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkButtonAction" prefHeight="35.0" prefWidth="60.0" text="Finish" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

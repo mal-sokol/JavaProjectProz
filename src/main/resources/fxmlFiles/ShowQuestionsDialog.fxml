@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proz.controllers.ShowQuestionsDialogController">
+   <children>
+      <TableView fx:id="questionTable" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Question">
+              <cellValueFactory>
+                  <PropertyValueFactory property="question" />
+              </cellValueFactory>
+          </TableColumn>
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <contextMenu>
+            <ContextMenu fx:id="questionContextMenu">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#addQuestion" text="Add" />
+                  <MenuItem mnemonicParsing="false" onAction="#editQuestion" text="Edit" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteQuestionWithAnswers" text="Delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+   </children>
+</AnchorPane>

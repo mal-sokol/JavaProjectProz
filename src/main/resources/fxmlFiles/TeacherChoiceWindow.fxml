@@ -30,7 +30,7 @@
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#editCategory" text="Category" />
                     <MenuItem mnemonicParsing="false" onAction="#editTest" text="Test" />
-                    <MenuItem mnemonicParsing="false" onAction="#showQuestionsToEdit" text="Question" />
+                    <MenuItem mnemonicParsing="false" onAction="#showQuestions" text="Question" />
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Delete">
@@ -105,6 +105,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#editTest" text="Edit" />
                         <MenuItem mnemonicParsing="false" onAction="#addTest" text="Add test" />
                         <MenuItem mnemonicParsing="false" onAction="#addQuestion" text="Add question" />
+                  <MenuItem mnemonicParsing="false" onAction="#showQuestions" text="Show questions" />
                         <MenuItem mnemonicParsing="false" onAction="#deleteTest" text="Delete" />
                     </items>
                 </ContextMenu>

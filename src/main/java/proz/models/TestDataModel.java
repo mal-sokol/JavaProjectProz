@@ -44,7 +44,7 @@ public class TestDataModel
 
     public static void updateTestInDataBase() throws ApplicationException
     {
-        testDao.createOrUpdate(TestConverter.testFxToTest(TestDataModel.getTest()));
+        testDao.createOrUpdate(TestConverter.testFxToTest(getTest()));
     }
 
     public static ObservableList<TestFxModel> getTests()

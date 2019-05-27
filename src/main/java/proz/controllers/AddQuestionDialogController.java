@@ -4,10 +4,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import proz.database.models.Answer;
 import proz.database.models.Question;
 import proz.models.AnswerDataModel;
+import proz.models.QuestionDataModel;
+import proz.models.TestDataModel;
+import proz.utils.DialogsUtils;
+import proz.utils.converters.TestConverter;
 import proz.utils.exceptions.ApplicationException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddQuestionDialogController
 {
@@ -30,6 +39,8 @@ public class AddQuestionDialogController
     @FXML
     private RadioButton a4RadioButton;
     @FXML
+    private ToggleGroup group;
+    @FXML
     private Button saveButton;
     @FXML
     private Button cancelButton;
@@ -39,7 +50,7 @@ public class AddQuestionDialogController
     {
         saveButton.disableProperty().bind(questionTextField.textProperty().isEmpty().or(a1TextField.textProperty().isEmpty())
                 .or(a2TextField.textProperty().isEmpty()).or(a3TextField.textProperty().isEmpty())
-                .or(a4TextField.textProperty().isEmpty()));
+                .or(a4TextField.textProperty().isEmpty()).or(group.selectedToggleProperty().isNull()));
     }
 
     @FXML
@@ -47,58 +58,47 @@ public class AddQuestionDialogController
     {
         disableSaveButtonUntilAllFieldsFilled();
     }
-    //TODO: zapis 4 na raz
-    private void saveAnswers(Question question, String a1, boolean c1, String a2, boolean c2,
-                             String a3, boolean c3, String a4, boolean c4) throws ApplicationException
+
+    private void populateListOfAnswers(Question question, List<Answer> answers)
     {
-        AnswerDataModel.saveAnswerInDataBase(a1, c1, question);
-        AnswerDataModel.saveAnswerInDataBase(a2, c2, question);
-        AnswerDataModel.saveAnswerInDataBase(a3, c3, question);
-        AnswerDataModel.saveAnswerInDataBase(a4, c4, question);
+        answers.add(new Answer(a1TextField.getText(), a1RadioButton.isSelected(), question));
+        answers.add(new Answer(a2TextField.getText(), a2RadioButton.isSelected(), question));
+        answers.add(new Answer(a3TextField.getText(), a3RadioButton.isSelected(), question));
+        answers.add(new Answer(a4TextField.getText(), a4RadioButton.isSelected(), question));
     }
-//
-//    @FXML
-//    private void saveTestInDataBase(ActionEvent event)
-//    {
-//        Test test;
-//        try {
-//            test = TestDataModel.saveTestInDataBase(testNameTextField.getText(),
-//                    CategoryConverter.categoryFxToCategory(CategoryDataModel.getCategory()));
-//        Question question = QuestionDataModel.saveQuestionInDataBase(q1TextField.getText(), test);
-//        saveAnswers(question, q1a1TextField.getText(), q1a1CheckBox.isSelected(),
-//                q1a2TextField.getText(), q1a2CheckBox.isSelected(),
-//                q1a3TextField.getText(), q1a3CheckBox.isSelected(),
-//                q1a4TextField.getText(), q1a4CheckBox.isSelected());
-//        question = QuestionDataModel.saveQuestionInDataBase(q2TextField.getText(), test);
-//        saveAnswers(question, q2a1TextField.getText(), q2a1CheckBox.isSelected(),
-//                q2a2TextField.getText(), q2a2CheckBox.isSelected(),
-//                q2a3TextField.getText(), q2a3CheckBox.isSelected(),
-//                q2a4TextField.getText(), q2a4CheckBox.isSelected());
-//        question = QuestionDataModel.saveQuestionInDataBase(q3TextField.getText(), test);
-//        saveAnswers(question, q3a1TextField.getText(), q3a1CheckBox.isSelected(),
-//                q3a2TextField.getText(), q3a2CheckBox.isSelected(),
-//                q3a3TextField.getText(), q3a3CheckBox.isSelected(),
-//                q3a4TextField.getText(), q3a4CheckBox.isSelected());
-//        question = QuestionDataModel.saveQuestionInDataBase(q4TextField.getText(), test);
-//        saveAnswers(question, q4a1TextField.getText(), q4a1CheckBox.isSelected(),
-//                q4a2TextField.getText(), q4a2CheckBox.isSelected(),
-//                q4a3TextField.getText(), q4a3CheckBox.isSelected(),
-//                q4a4TextField.getText(), q4a4CheckBox.isSelected());
-//        question = QuestionDataModel.saveQuestionInDataBase(q5TextField.getText(), test);
-//        saveAnswers(question, q5a1TextField.getText(), q5a1CheckBox.isSelected(),
-//                q5a2TextField.getText(), q5a2CheckBox.isSelected(),
-//                q5a3TextField.getText(), q5a3CheckBox.isSelected(),
-//                q5a4TextField.getText(), q5a4CheckBox.isSelected());
-//        } catch (ApplicationException e) {
-//            DialogsUtils.errorDialog(e.getMessage());
-//        }
-//        Stage stage = (Stage) saveButton.getScene().getWindow();
-//        stage.close();
-//    }
+
+    private Question saveQuestionInDataBase()
+    {
+        Question question = null;
+        try {
+            question = QuestionDataModel.saveQuestionInDataBase(questionTextField.getText(),
+                    TestConverter.testFxToTest(TestDataModel.getTest()));
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+        return question;
+    }
+
+    private void saveAnswersInDataBase(List<Answer> answers) {
+        try {
+            AnswerDataModel.saveManyAnswersInDataBase(answers);
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+    }
 
     @FXML
     private void saveQuestionAndAnswers()
     {
+
+        Question question = saveQuestionInDataBase();
+
+        List<Answer> answers = new ArrayList<>();
+        populateListOfAnswers(question, answers);
+        saveAnswersInDataBase(answers);
+
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

@@ -136,5 +136,15 @@ public class StudentChoiceWindowController
     @FXML
     private void beginTest(ActionEvent event)
     {
+        try {
+            QuestionDataModel.getQuestionsFromTest(TestDataModel.getTest().getTestId());
+        } catch (ApplicationException e) {
+            DialogsUtils.errorDialog(e.getMessage());
+        }
+        if(QuestionDataModel.getQuestions().size() < 5)
+            DialogsUtils.errorDialog("Test must contain at least 5 questions");
+        else
+            FxmlUtils.switchScene("/fxmlFiles/TestWindow.fxml",
+                    userChoicePanel, "/images/student.png");
     }
 }
