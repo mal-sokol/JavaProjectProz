@@ -50,7 +50,7 @@ public class CategoryDataModel
 
     public static void updateCategoryInDataBase() throws ApplicationException
     {
-        categoryDao.createOrUpdate(CategoryConverter.categoryFxToCategory(CategoryDataModel.getCategory()));
+        categoryDao.createOrUpdate(CategoryConverter.categoryFxToCategory(getCategory()));
     }
 
     public static ObservableList<CategoryFxModel> getCategories()

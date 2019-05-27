@@ -27,11 +27,24 @@ public class AnswerDao extends CommonDao
             }
         } catch (SQLException e) {
             throw new ApplicationException("Delete answers to question error");
+        }
+    }
+
+    public List<Answer> queryForAnswersFromTest(AnswerDao dao, int testId) throws ApplicationException
+    {
+        try {
+            QueryBuilder<Answer, Object> queryBuilder = dao.getQueryBuilder(Answer.class);
+            QuestionDao questionDao = new QuestionDao();
+            return queryBuilder.where().in("QUESTION_ID",
+                    questionDao.queryForQuestionsFromTest(testId )).query();
+        } catch (SQLException e) {
+            throw new ApplicationException("Query for answers from test error");
         } finally {
             try {
                 this.connectionSource.close();
             } catch (IOException e) {
                 throw new ApplicationException("Close connection error when deleting answers to question");
+
             }
         }
     }

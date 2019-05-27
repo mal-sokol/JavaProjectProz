@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0"
             prefWidth="560.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="proz.controllers.AddQuestionDialogController">
+            fx:controller="proz.controllers.EditQuestionDialogController">
     <children>
         <ScrollPane prefHeight="340.0" prefWidth="550.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                     AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
@@ -125,10 +125,10 @@
                                 </HBox>
                                 <HBox alignment="TOP_CENTER" spacing="80.0">
                                     <children>
-                                        <Button fx:id="saveButton" mnemonicParsing="false"
-                                                onAction="#saveQuestionAndAnswers" prefHeight="35.0" prefWidth="70.0"
-                                                text="Create"/>
-                                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelSaving"
+                                        <Button fx:id="editButton" mnemonicParsing="false"
+                                                onAction="#editQuestionAndAnswers" prefHeight="35.0" prefWidth="70.0"
+                                                text="Edit"/>
+                                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelEditing"
                                                 prefHeight="35.0" prefWidth="70.0" text="Cancel"/>
                                     </children>
                                     <padding>

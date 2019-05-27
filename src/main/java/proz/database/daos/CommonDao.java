@@ -34,6 +34,19 @@ public abstract class CommonDao
             dao.createOrUpdate((T) baseModel);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
+            throw new ApplicationException("Create or update error");
+        } finally {
+            this.closeDbConnection();
+        }
+    }
+
+    public <T extends BaseModel, I> void update(BaseModel baseModel) throws ApplicationException
+    {
+        Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
+        try {
+            dao.update((T) baseModel);
+        } catch (SQLException e) {
+            LOGGER.warn(e.getCause().getMessage());
             throw new ApplicationException("Update error");
         } finally {
             this.closeDbConnection();
@@ -48,13 +61,13 @@ public abstract class CommonDao
             dao.refresh((T) baseModel);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-            throw new ApplicationException("Update error");
+            throw new ApplicationException("Create or update and refresh error");
         } finally {
             this.closeDbConnection();
         }
     }
 
-    public <T extends BaseModel, I> void create(Collection<T> collection) throws ApplicationException
+    public <T extends BaseModel, I> void createMany(Collection<T> collection) throws ApplicationException
     {
         Dao<T, I> dao = getDao((Class<T>) collection.iterator().next().getClass());
         try {
@@ -87,7 +100,7 @@ public abstract class CommonDao
             dao.delete((T) baseModel);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-            throw new ApplicationException("Deletion error");
+            throw new ApplicationException("Delete error");
         } finally {
             this.closeDbConnection();
         }
@@ -100,7 +113,7 @@ public abstract class CommonDao
             dao.deleteById((I) id);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-            throw new ApplicationException("Deletion error");
+            throw new ApplicationException("Delete by id error");
         } finally {
             this.closeDbConnection();
         }
@@ -113,7 +126,7 @@ public abstract class CommonDao
             return dao.queryForId((I) id);
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-            throw new ApplicationException("Not found error");
+            throw new ApplicationException("Find by id error");
         } finally {
             this.closeDbConnection();
         }
@@ -126,7 +139,7 @@ public abstract class CommonDao
             return dao.queryForAll();
         } catch (SQLException e) {
             LOGGER.warn(e.getCause().getMessage());
-            throw new ApplicationException("Not found all error");
+            throw new ApplicationException("Query for all error");
         } finally {
             this.closeDbConnection();
         }

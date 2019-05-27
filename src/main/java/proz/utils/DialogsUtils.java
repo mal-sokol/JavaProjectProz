@@ -68,12 +68,12 @@ public class DialogsUtils
     {
         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
         informationAlert.setTitle("Editing items");
-        informationAlert.setHeaderText("You can edit categories and tests.");
+        informationAlert.setHeaderText("You can edit categories, tests and questions.");
         informationAlert.setContentText("Follow these steps to edit an item:\n" +
                 "1. Select item to edit.\n" +
                 "2. Click on \"Edit\" in menu.\n" +
-                "3. Choose \"Category\" or \"Test\".\n" +
-                "4. Edit item and confirm change with \"OK\" button.\n");
+                "3. Choose \"Category\", \"Test\" or \"Question\".\n" +
+                "4. Edit item and confirm the change.\n");
         informationAlert.showAndWait();
     }
 
@@ -81,11 +81,11 @@ public class DialogsUtils
     {
         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
         informationAlert.setTitle("Adding items");
-        informationAlert.setHeaderText("You can add categories and tests.");
+        informationAlert.setHeaderText("You can add categories, tests and questions.");
         informationAlert.setContentText("Follow these steps to add an item:\n" +
                 "1. Click on \"Add\" in menu.\n" +
-                "2. Choose \"Category\" or \"Test\".\n" +
-                "3. Add item and confirm with \"OK\" button.\n");
+                "2. Choose \"Category\", \"Test\" or \"Question\".\n" +
+                "3. Add item and confirm the change.\n");
         informationAlert.showAndWait();
     }
 
@@ -93,7 +93,7 @@ public class DialogsUtils
     {
         Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
         informationAlert.setTitle("Deleting items");
-        informationAlert.setHeaderText("You can delete categories and tests.");
+        informationAlert.setHeaderText("You can delete categories, tests and questions.");
         informationAlert.setContentText("Follow these steps to delete an item:\n" +
                 "1. Select item to delete.\n" +
                 "2. Click on \"Delete\" in menu.\n" +
@@ -153,6 +153,15 @@ public class DialogsUtils
         informationAlert.setTitle("Error - item not selected");
         informationAlert.setHeaderText("Test was not selected.");
         informationAlert.setContentText("Select one of tests to perform this action.");
+        informationAlert.showAndWait();
+    }
+
+    public static void questionNotSelectedDialog()
+    {
+        Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
+        informationAlert.setTitle("Error - item not selected");
+        informationAlert.setHeaderText("Question was not selected.");
+        informationAlert.setContentText("Select one of questions to perform this action.");
         informationAlert.showAndWait();
     }
 
