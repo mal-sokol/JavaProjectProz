@@ -1,5 +1,6 @@
 package proz.database.daos;
 import com.j256.ormlite.stmt.QueryBuilder;
+import proz.database.models.Result;
 import proz.database.models.Test;
 import proz.utils.exceptions.ApplicationException;
 
@@ -55,15 +56,18 @@ public class TestDao extends CommonDao
             QueryBuilder<Test, Object> queryBuilder = getQueryBuilder(Test.class);
             toDelete = queryBuilder.where().eq("CATEGORY_ID", categoryId).query();
             if(!toDelete.isEmpty()) {
+                ResultDao resultDao = new ResultDao();
+                QuestionDao questionDao = new QuestionDao();
                 for (Test test : toDelete) {
-                    QuestionDao questionDao = new QuestionDao();
+                    resultDao.deleteTestResults(test.getTestId());
                     questionDao.deleteQuestionsFromTest(test.getTestId());
                     delete(test);
                 }
             }
         } catch (SQLException e) {
             throw new ApplicationException("Delete tests from category error");
-        } finally {
+        }
+        finally {
             try {
                 this.connectionSource.close();
             } catch (IOException e) {
@@ -75,7 +79,9 @@ public class TestDao extends CommonDao
 
     public void deleteTestByid(int testId) throws ApplicationException
     {
+        ResultDao resultDao = new ResultDao();
         QuestionDao questionDao = new QuestionDao();
+        resultDao.deleteTestResults(testId);
         questionDao.deleteQuestionsFromTest(testId);
         deleteById(Test.class, testId);
     }
