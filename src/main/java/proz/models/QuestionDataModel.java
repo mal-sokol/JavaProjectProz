@@ -4,7 +4,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import proz.database.daos.AnswerDao;
 import proz.database.daos.QuestionDao;
+import proz.database.models.Answer;
 import proz.database.models.Question;
 import proz.database.models.Test;
 import proz.utils.converters.QuestionConverter;
@@ -76,5 +78,13 @@ public class QuestionDataModel
     public static void setQuestion(QuestionFxModel question)
     {
         QuestionDataModel.question.set(question);
+    }
+
+    public static void deleteQuestion(QuestionFxModel selectedQuestion) throws ApplicationException
+    {
+        AnswerDao answerDao = new AnswerDao();
+        answerDao.deleteAnswersToQuestion(selectedQuestion.getQuestionId());
+        questionDao.deleteById(Question.class, selectedQuestion.getQuestionId());
+        questions.remove(selectedQuestion);
     }
 }

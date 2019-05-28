@@ -16,18 +16,18 @@ public class AnswerDao extends CommonDao
     }
     
     public void deleteAnswersToQuestion(int questionId) throws ApplicationException {
-        List<Answer> toDelete;
         try {
-            QueryBuilder<Answer, Object> queryBuilder = this.getQueryBuilder(Answer.class);
-            toDelete = queryBuilder.where().eq("QUESTION_ID", questionId).query();
-            if(!toDelete.isEmpty()) {
-                for (Answer answer : toDelete) {
-                    delete(answer);
-                }
-            }
+            this.getDao(Answer.class).executeRaw("delete from ANSWERS where QUESTION_ID = " + questionId);
         } catch (SQLException e) {
             throw new ApplicationException("Delete answers to question error");
+        } finally {
+            try {
+                this.connectionSource.close();
+            } catch (IOException e) {
+                throw new ApplicationException("Close connection error when deleting answers to question: " + questionId);
+            }
         }
+
     }
 
     public List<Answer> queryForAnswersFromTest(int testId) throws ApplicationException

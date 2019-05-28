@@ -183,4 +183,12 @@ public class DialogsUtils
         confirmationDialog.setContentText("Press OK to confirm, otherwise press Cancel.");
         return confirmationDialog.showAndWait();
     }
+
+    public static Optional<ButtonType> DeleteQuestionConfirmationDialog()
+    {
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Delete question");
+        confirmationDialog.setHeaderText("Are you sure you want to delete this question?");
+        return confirmationDialog.showAndWait();
+    }
 }
